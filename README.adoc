@@ -9,6 +9,7 @@ image:https://raw.github.com/m-m-m/mmm/master/src/site/resources/images/logo.png
 image:https://travis-ci.org/m-m-m/validation.svg?branch=master["build-status",link="https://travis-ci.org/m-m-m/validation"]
 
 The `mmm-validation` module is a simple but powerful API for validation.
+The `mmm-validation-main` module ships with implementations of validators and validator builders for all kind of standard datatypes.
 
 * https://m-m-m.github.io/maven/apidocs/net/sf/mmm/validation/package-summary.html#package.description[Validation API]
 * https://m-m-m.github.io/maven/apidocs/[and much more... ]
