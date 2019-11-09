@@ -1,10 +1,10 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package net.sf.mmm.validation;
+package io.github.mmm.validation;
 
 import java.util.Iterator;
 
-import net.sf.mmm.validation.impl.ComposableIterator;
+import io.github.mmm.validation.impl.ComposableIterator;
 
 /**
  * Interface for an object that may contain {@link #getChild(int) children}.

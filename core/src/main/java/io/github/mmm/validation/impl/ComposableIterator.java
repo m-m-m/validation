@@ -1,10 +1,10 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package net.sf.mmm.validation.impl;
+package io.github.mmm.validation.impl;
 
 import java.util.Iterator;
 
-import net.sf.mmm.validation.Composable;
+import io.github.mmm.validation.Composable;
 
 /**
  * {@link Iterator} for {@link Composable}.
