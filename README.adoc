@@ -1,15 +1,8 @@
-= Mature Modular Meta-framework (mmm)
+image:https://raw.github.com/m-m-m/mmm/master/src/site/resources/images/logo.png[logo,link="https://m-m-m.github.io"]
 
-image:https://raw.github.com/m-m-m/mmm/master/src/site/resources/images/logo.png[logo]
-
-*Welcome to the wonderful world of http://m-m-m.sourceforge.net/index.html[mmm]*
-
-== mmm-validation
+= mmm-validation
 
 image:https://travis-ci.org/m-m-m/validation.svg?branch=master["build-status",link="https://travis-ci.org/m-m-m/validation"]
 
-The `mmm-validation` module is a simple but powerful API for validation.
-The `mmm-validation-main` module ships with implementations of validators and validator builders for all kind of standard datatypes.
-
-* https://m-m-m.github.io/maven/apidocs/net/sf/mmm/validation/package-summary.html#package.description[Validation API]
-* https://m-m-m.github.io/maven/apidocs/[and much more... ]
+The module `mmm-validation` provides a simple but powerful API for validation.
+The module `mmm-validation-main` ships with implementations of validators and validator builders for all kind of standard datatypes.
