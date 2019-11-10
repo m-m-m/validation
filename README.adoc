@@ -2,7 +2,24 @@ image:https://raw.github.com/m-m-m/mmm/master/src/site/resources/images/logo.png
 
 = mmm-validation
 
+image:https://img.shields.io/github/license/m-m-m/validation.svg?label=License["Apache License, Version 2.0",link=https://github.com/m-m-m/validation/blob/master/LICENSE]
+image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-validation.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m]
 image:https://travis-ci.org/m-m-m/validation.svg?branch=master["build-status",link="https://travis-ci.org/m-m-m/validation"]
 
 The module `mmm-validation` provides a simple but powerful API for validation.
 The module `mmm-validation-main` ships with implementations of validators and validator builders for all kind of standard datatypes.
+
+== Usage
+
+Maven Dependency:
+```xml
+<dependency>
+  <groupId>io.github.m-m-m</groupId>
+  <artifactId>mmm-validation-main</artifactId>
+</dependency>
+```
+
+Module Dependency:
+```java
+  requires transitive io.github.mmm.validation.main;
+```
