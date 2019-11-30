@@ -2,7 +2,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation;
 
+import java.io.IOException;
 import java.util.Locale;
+
+import io.github.mmm.base.exception.RuntimeIoException;
 
 /**
  * {@link ValidationResult} composing multiple {@link ValidationResult#isValid() invalid} {@link ValidationResult}s.
@@ -72,22 +75,22 @@ public class ComposedValidationFailure extends AbstractValidationResult {
   }
 
   @Override
-  public String getMessage(Locale locale) {
+  public void getLocalizedMessage(Locale locale, Appendable buffer) {
 
-    StringBuilder buffer = new StringBuilder();
-    for (ValidationResult failure : this.failures) {
-      if (buffer.length() > 0) {
-        buffer.append(getSeparator());
+    try {
+      String separator = null;
+      for (ValidationResult failure : this.failures) {
+        if (separator == null) {
+          separator = getSeparator();
+        } else {
+          buffer.append(separator);
+        }
+        String message = failure.getLocalizedMessage(locale);
+        buffer.append(message);
       }
-      String message;
-      if (locale == null) {
-        message = failure.getMessage();
-      } else {
-        message = failure.getMessage(locale);
-      }
-      buffer.append(message);
+    } catch (IOException e) {
+      throw new RuntimeIoException(e);
     }
-    return buffer.toString();
   }
 
 }

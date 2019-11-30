@@ -9,8 +9,7 @@ import java.util.Objects;
  *
  * @param <V> is the generic type of the value to {@link #validate(Object) validate}.
  *
- * @author Joerg Hohwiller (hohwille at users.sourceforge.net)
- * @since 3.1.0
+ * @since 1.0.0
  */
 public abstract class AbstractValidator<V> implements Validator<V> {
 
@@ -51,16 +50,6 @@ public abstract class AbstractValidator<V> implements Validator<V> {
   }
 
   /**
-   * @return {@code true} if this is a validator for mandatory fields (that will not accept {@code null} or empty
-   *         values), {@code false} otherwise.
-   */
-  @Override
-  public boolean isMandatory() {
-
-    return false;
-  }
-
-  /**
    * @param validators the {@link AbstractValidator validators} to append.
    * @return a new {@link ComposedValidator} instance composing the current validator ({@code this}) with the given
    *         validator.
@@ -84,10 +73,33 @@ public abstract class AbstractValidator<V> implements Validator<V> {
     return new ComposedValidator<>(array);
   }
 
-  @Override
-  public abstract boolean equals(Object obj);
+  /**
+   * @param source the {@link #validate(Object, Object) value source}.
+   * @return the {@link Object#toString() string representation} of the given {@code source}.
+   */
+  protected String source2string(Object source) {
+
+    if (source == null) {
+      return null;
+    }
+    return String.valueOf(source);
+  }
 
   @Override
-  public abstract int hashCode();
+  public int hashCode() {
+
+    return getCode().hashCode();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+
+    if (this == obj) {
+      return true;
+    } else if ((obj == null) || (getClass() != obj.getClass())) {
+      return false;
+    }
+    return true;
+  }
 
 }

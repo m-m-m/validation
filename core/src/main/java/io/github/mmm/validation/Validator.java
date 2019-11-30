@@ -2,6 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation;
 
+import io.github.mmm.base.lang.Composable;
+
 /**
  * A {@link Validator} allows to {@link #validate(Object) validate} according values. <br>
  * There can be arbitrary implementations of this interface. A regular implementation shall be stateless and therefore
@@ -16,7 +18,7 @@ package io.github.mmm.validation;
  *
  * @since 1.0.0
  */
-public interface Validator<V> extends Composable<Validator<? super V>> {
+public interface Validator<V> extends Composable<Validator<?>> {
 
   /**
    * This method validates the given {@code value}.
@@ -35,13 +37,10 @@ public interface Validator<V> extends Composable<Validator<? super V>> {
    *
    * @param value is the value to validate.
    * @param valueSource is the {@link ValidationResult#getSource() source} describing the origin of the given
-   *        {@code value}. This may be the filename where the value was read from, an XPath where the value was located
-   *        in an XML document, the label of a widget of the UI containing the value, etc. This will help to find the
-   *        problem easier. The source needs to have a reasonable {@link Object#toString() string-representation} as
-   *        this may be displayed to the end-user to locate the source of the failure. In most cases it is suitable to
+   *        {@code value}. The source needs to have a reasonable {@link Object#toString() string-representation} as this
+   *        may be displayed to the end-user to locate the source of the failure. In most cases it is suitable to
    *        directly pass a {@link String}.
-   * @return the {@link ValidationResult} or {@code null} if the given {@code value} is valid according to this
-   *         {@link Validator}.
+   * @return the {@link ValidationResult}.
    */
   ValidationResult validate(V value, Object valueSource);
 

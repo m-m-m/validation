@@ -35,9 +35,20 @@ public final class ValidationResultValid implements ValidationResult {
   }
 
   @Override
-  public String getMessage(Locale locale) {
+  public String getLocalizedMessage() {
 
     return null;
+  }
+
+  @Override
+  public String getLocalizedMessage(Locale locale) {
+
+    return null;
+  }
+
+  @Override
+  public void getLocalizedMessage(Locale locale, Appendable buffer) {
+
   }
 
   @Override
