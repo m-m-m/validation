@@ -12,6 +12,7 @@ The module `mmm-validation-main` ships with implementations of validators and va
 == Usage
 
 Maven Dependency:
+
 ```xml
 <dependency>
   <groupId>io.github.m-m-m</groupId>
@@ -20,6 +21,7 @@ Maven Dependency:
 ```
 
 Module Dependency:
+
 ```java
   requires transitive io.github.mmm.validation.main;
 ```
