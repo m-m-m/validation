@@ -12,7 +12,14 @@ import io.github.mmm.base.lang.Composable;
  * This API intentionally does NOT make use of {@link Throwable exceptions} as they are more expensive to produce and
  * shall only occur in exceptional situations, while a validation failure is a regular use-case. Further, a validation
  * shall validate entire objects to the end collecting all {@link ValidationResult failures} so the end-user can see and
- * fix all problems at once.
+ * fix all problems at once.<br>
+ * <b>ATTENTION:</b><br>
+ * The {@code null} values is typically only handled by {@link #isMandatory() mandatory validator}. Other validators
+ * will treat {@code null} as a valid value. This design gives the best flexibility as it allows to define specific
+ * constraints also for optional values. However, you need to be aware this fact to avoid mistakes. So e.g. adding a
+ * validator requiring that the minimum size/length of a value needs to be e.g. 2 will still accept {@code null} as
+ * valid. So in such case you most probably want to {@link ComposedValidator combine} it with the {@link #isMandatory()
+ * mandatory validator}.
  *
  * @param <V> type of the value to {@link #validate(Object) validate}.
  *

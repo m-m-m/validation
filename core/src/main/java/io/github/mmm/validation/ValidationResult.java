@@ -42,4 +42,11 @@ public interface ValidationResult extends Composable<ValidationResult>, Localiza
    */
   String getCode();
 
+  /**
+   * @param result another {@link ValidationResult} to combine with this one.
+   * @return the {@link ValidationResult} composed out of this with the given {@code result}.
+   * @see ValidationResultBuilder
+   */
+  ValidationResult add(ValidationResult result);
+
 }

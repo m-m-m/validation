@@ -33,15 +33,17 @@ public class ValidatorBuilderMap<K, V, PARENT>
   @Override
   public ValidatorBuilderMap<K, V, PARENT> range(String min, String max) {
 
-    Integer iMin = null;
-    if (min != null) {
-      iMin = Integer.valueOf(min);
+    if ((min != null) || (max != null)) {
+      Integer iMin = null;
+      if (min != null) {
+        iMin = Integer.valueOf(min);
+      }
+      Integer iMax = null;
+      if (max != null) {
+        iMax = Integer.valueOf(max);
+      }
+      add(new ValidatorMapSize(new GenericRange<>(iMin, iMax)));
     }
-    Integer iMax = null;
-    if (max != null) {
-      iMax = Integer.valueOf(max);
-    }
-    add(new ValidatorMapSize(new GenericRange<>(iMin, iMax)));
     return self();
   }
 

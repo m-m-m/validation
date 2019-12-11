@@ -50,7 +50,10 @@ public abstract class ComparableValidatorBuilder<V extends Comparable, PARENT, S
    */
   public SELF range(V min, V max) {
 
-    return range(new GenericRange<>(min, max));
+    if ((min != null) || (max != null)) {
+      range(new GenericRange<>(min, max));
+    }
+    return self();
   }
 
 }

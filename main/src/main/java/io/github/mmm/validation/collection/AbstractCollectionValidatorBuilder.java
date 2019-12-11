@@ -72,6 +72,23 @@ public abstract class AbstractCollectionValidatorBuilder<E, V extends Collection
     return size(0, max);
   }
 
+  @Override
+  public SELF range(String min, String max) {
+
+    if ((min != null) || (max != null)) {
+      Integer iMin = null;
+      if (min != null) {
+        iMin = Integer.valueOf(min);
+      }
+      Integer iMax = null;
+      if (max != null) {
+        iMax = Integer.valueOf(max);
+      }
+      add(new ValidatorCollectionSize(new GenericRange<>(iMin, iMax)));
+    }
+    return self();
+  }
+
   /**
    * Creates a new {@link ObjectValidatorBuilder builder} for the {@link AbstractValidator validators} to invoke for
    * each {@link Collection#contains(Object) element contained} in the {@link Collection}.<br/>

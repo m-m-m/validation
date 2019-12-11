@@ -4,6 +4,7 @@ package io.github.mmm.validation.string;
 
 import java.util.regex.Pattern;
 
+import io.github.mmm.base.range.NumberRange;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.main.ObjectValidatorBuilder;
 
@@ -36,6 +37,23 @@ public abstract class CharSequenceValidatorBuilder<V extends CharSequence, PAREN
   public SELF pattern(Pattern pattern) {
 
     return add(new ValidatorPattern(pattern));
+  }
+
+  @Override
+  public SELF range(String min, String max) {
+
+    if ((min != null) || (max != null)) {
+      Double dMin = null;
+      if (min != null) {
+        dMin = Double.valueOf(min);
+      }
+      Double dMax = null;
+      if (max != null) {
+        dMax = Double.valueOf(max);
+      }
+      add(new ValidatorCharSequnceSize(new NumberRange(dMin, dMax)));
+    }
+    return self();
   }
 
 }

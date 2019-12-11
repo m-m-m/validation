@@ -65,4 +65,15 @@ public class ValidationFailure extends AbstractValidationResult {
     this.message.getLocalizedMessage(locale, buffer);
   }
 
+  @Override
+  public ValidationResult add(ValidationResult result) {
+
+    if ((result == null) || result.isValid()) {
+      return this;
+    } else if (result instanceof ComposedValidationFailure) {
+      return result.add(this);
+    }
+    return new ComposedValidationFailure(getSource(), this, result);
+  }
+
 }

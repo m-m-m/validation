@@ -31,7 +31,7 @@ public abstract class ContainerValidatorBuilder<V, PARENT, SELF extends Containe
   /**
    * @return the sub-{@link ObjectValidatorBuilderFactory factory}.
    */
-  public ObjectValidatorBuilderFactory<SELF> getSubFactory() {
+  protected ObjectValidatorBuilderFactory<SELF> getSubFactory() {
 
     if (this.subFactory == null) {
       this.subFactory = new ObjectValidatorBuilderFactory<>(self());

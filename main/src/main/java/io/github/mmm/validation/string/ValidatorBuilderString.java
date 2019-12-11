@@ -2,9 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation.string;
 
-import io.github.mmm.base.range.GenericRange;
-import io.github.mmm.validation.main.ValidatorRange;
-
 /**
  * {@link CharSequenceValidatorBuilder Validator builder} for {@link String}.
  *
@@ -25,10 +22,4 @@ public class ValidatorBuilderString<PARENT>
     super(parent);
   }
 
-  @Override
-  public ValidatorBuilderString<PARENT> range(String min, String max) {
-
-    add(new ValidatorRange<>(new GenericRange<>(min, max)));
-    return self();
-  }
 }

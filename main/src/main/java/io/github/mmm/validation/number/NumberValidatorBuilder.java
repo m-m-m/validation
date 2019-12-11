@@ -33,15 +33,17 @@ public class NumberValidatorBuilder<V extends Number & Comparable, PARENT, SELF 
   @Override
   public SELF range(String min, String max) {
 
-    Double dMin = null;
-    if (min != null) {
-      dMin = Double.valueOf(min);
+    if ((min != null) || (max != null)) {
+      Double dMin = null;
+      if (min != null) {
+        dMin = Double.valueOf(min);
+      }
+      Double dMax = null;
+      if (max != null) {
+        dMax = Double.valueOf(max);
+      }
+      add(new ValidatorRange<>(new NumberRange(dMin, dMax)));
     }
-    Double dMax = null;
-    if (max != null) {
-      dMax = Double.valueOf(max);
-    }
-    add(new ValidatorRange<>(new NumberRange(dMin, dMax)));
     return self();
   }
 

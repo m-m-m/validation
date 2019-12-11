@@ -8,6 +8,8 @@ import java.util.List;
 /**
  * Builder to {@link #add(ValidationResult) collect} {@link ValidationResult}s and {@link #build(String) build} the
  * aggregated end-result.
+ *
+ * @since 1.0.0
  */
 public class ValidationResultBuilder {
 

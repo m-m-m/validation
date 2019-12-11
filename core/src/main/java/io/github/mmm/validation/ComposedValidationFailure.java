@@ -3,6 +3,7 @@
 package io.github.mmm.validation;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Locale;
 
 import io.github.mmm.base.exception.RuntimeIoException;
@@ -91,6 +92,24 @@ public class ComposedValidationFailure extends AbstractValidationResult {
     } catch (IOException e) {
       throw new RuntimeIoException(e);
     }
+  }
+
+  @Override
+  public ValidationResult add(ValidationResult result) {
+
+    if ((result == null) || result.isValid()) {
+      return this;
+    }
+    ValidationResult[] composedFailures;
+    if (result instanceof ComposedValidationFailure) {
+      ValidationResult[] otherFailures = ((ComposedValidationFailure) result).failures;
+      composedFailures = Arrays.copyOf(this.failures, this.failures.length + otherFailures.length);
+      System.arraycopy(otherFailures, 0, composedFailures, this.failures.length, otherFailures.length);
+    } else {
+      composedFailures = Arrays.copyOf(this.failures, this.failures.length + 1);
+      composedFailures[this.failures.length] = result;
+    }
+    return new ComposedValidationFailure(getSource(), composedFailures);
   }
 
 }

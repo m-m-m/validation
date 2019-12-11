@@ -4,6 +4,8 @@ package io.github.mmm.validation;
 
 /**
  * Abstract base implementation of {@link ValidationResult}.
+ *
+ * @since 1.0.0
  */
 public abstract class AbstractValidationResult implements ValidationResult {
 

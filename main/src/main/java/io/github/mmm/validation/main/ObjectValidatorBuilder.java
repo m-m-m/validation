@@ -99,6 +99,29 @@ public abstract class ObjectValidatorBuilder<V, PARENT, SELF extends ObjectValid
   }
 
   /**
+   * This method allows to define a minimum. Values exceeding this minimum will be invalid. Avoid using
+   * {@link #min(String)} and {@link #max(String)} and use {@link #range(String, String)} in such case.
+   *
+   * @param min the minimum value allowed.
+   * @return this build instance for fluent API calls.
+   */
+  public SELF min(String min) {
+
+    return range(min, null);
+  }
+
+  /**
+   * This method allows to define a maximum. Values exceeding this maximum will be invalid.
+   *
+   * @param max the maximum value allowed.
+   * @return this build instance for fluent API calls.
+   */
+  public SELF max(String max) {
+
+    return range(null, max);
+  }
+
+  /**
    * This method allows to define a range in a generic way. If you have a properly typed builder please use more
    * specific methods such as {@link ComparableValidatorBuilder#range(io.github.mmm.base.range.Range)} instead.
    *

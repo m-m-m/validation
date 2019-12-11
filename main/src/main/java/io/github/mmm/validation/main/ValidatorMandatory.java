@@ -45,12 +45,6 @@ public class ValidatorMandatory extends AbstractValueValidator<Object> {
   }
 
   @Override
-  public ValidationResult validate(Object value, Object valueSource) {
-
-    return null;
-  }
-
-  @Override
   protected NlsMessage validateNull() {
 
     return getFailureMessage();

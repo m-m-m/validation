@@ -6,6 +6,8 @@ import java.util.Locale;
 
 /**
  * {@link ValidationResult} that is {@link #isValid() valid}.
+ *
+ * @since 1.0.0
  */
 public final class ValidationResultValid implements ValidationResult {
 
@@ -55,6 +57,12 @@ public final class ValidationResultValid implements ValidationResult {
   public String getCode() {
 
     return null;
+  }
+
+  @Override
+  public ValidationResult add(ValidationResult result) {
+
+    return result;
   }
 
   /**
