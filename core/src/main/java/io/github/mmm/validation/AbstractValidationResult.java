@@ -47,7 +47,7 @@ public abstract class AbstractValidationResult implements ValidationResult {
   @Override
   public String toString() {
 
-    return this.code + ": " + getMessage();
+    return "[" + this.code + "] " + this.source + ": " + getMessage();
   }
 
 }

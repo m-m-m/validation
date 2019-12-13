@@ -34,6 +34,15 @@ public abstract class CharSequenceValidatorBuilder<V extends CharSequence, PAREN
    * @param pattern the regular expression {@link Pattern} to match.
    * @return this build instance for fluent API calls.
    */
+  public SELF pattern(String pattern) {
+
+    return pattern(Pattern.compile(pattern));
+  }
+
+  /**
+   * @param pattern the regular expression {@link Pattern} to match.
+   * @return this build instance for fluent API calls.
+   */
   public SELF pattern(Pattern pattern) {
 
     return add(new ValidatorPattern(pattern));
