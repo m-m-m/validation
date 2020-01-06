@@ -49,7 +49,7 @@ public class ValidatorMapKeys<K> extends AbstractComposedValidator<Map<K, ?>, K>
   public ValidationResult validate(Map<K, ?> map, Object valueSource) {
 
     if (map == null) {
-      return ValidationResultValid.getInstance();
+      return ValidationResultValid.get();
     }
     String source = source2string(valueSource);
     ValidationResultBuilder builder = new ValidationResultBuilder();

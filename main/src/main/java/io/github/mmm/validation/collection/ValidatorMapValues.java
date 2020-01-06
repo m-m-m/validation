@@ -46,7 +46,7 @@ public class ValidatorMapValues<V> extends AbstractComposedValidator<Map<?, V>, 
   public ValidationResult validate(Map<?, V> map, Object valueSource) {
 
     if (map == null) {
-      return ValidationResultValid.getInstance();
+      return ValidationResultValid.get();
     }
     String source = source2string(valueSource);
     ValidationResultBuilder builder = new ValidationResultBuilder();

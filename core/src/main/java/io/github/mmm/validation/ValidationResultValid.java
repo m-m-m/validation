@@ -68,7 +68,7 @@ public final class ValidationResultValid implements ValidationResult {
   /**
    * @return the singleton instance of this class.
    */
-  public static ValidationResultValid getInstance() {
+  public static ValidationResultValid get() {
 
     return INSTANCE;
   }

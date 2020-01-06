@@ -49,20 +49,16 @@ public abstract class AbstractValidator<V> implements Validator<V> {
     return false;
   }
 
-  /**
-   * @param validators the {@link AbstractValidator validators} to append.
-   * @return a new {@link ComposedValidator} instance composing the current validator ({@code this}) with the given
-   *         validator.
-   */
+  @Override
   @SuppressWarnings("unchecked")
-  public AbstractValidator<V> append(AbstractValidator<? super V>... validators) {
+  public Validator<V> append(Validator<? super V>... validators) {
 
     Objects.requireNonNull(validators, "validators");
     if (validators.length == 0) {
       return this;
     }
     if (validators.length == 1) {
-      if (validators[0] == ValidatorNone.getInstance()) {
+      if (validators[0] == Validator.none()) {
         return this;
       }
       return new ComposedValidator<>(this, validators[0]);

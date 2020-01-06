@@ -49,7 +49,7 @@ public class ValidatorCollectionElements<E> extends AbstractComposedValidator<Co
   public ValidationResult validate(Collection<E> collection, Object valueSource) {
 
     if (collection == null) {
-      return ValidationResultValid.getInstance();
+      return ValidationResultValid.get();
     }
     String source = source2string(valueSource);
     ValidationResultBuilder builder = new ValidationResultBuilder();

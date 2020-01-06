@@ -23,7 +23,7 @@ public class ValidationResultBuilder {
   public ValidationResultBuilder() {
 
     super();
-    this.result = ValidationResultValid.getInstance();
+    this.result = ValidationResultValid.get();
   }
 
   /**

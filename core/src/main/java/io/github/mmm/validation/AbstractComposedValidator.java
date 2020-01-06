@@ -71,7 +71,7 @@ public abstract class AbstractComposedValidator<V, C> extends AbstractValidator<
 
   @SuppressWarnings("unchecked")
   @Override
-  public AbstractValidator<V> append(AbstractValidator<? super V>... validators) {
+  public Validator<V> append(Validator<? super V>... validators) {
 
     if ((validators == null) || (validators.length == 0)) {
       return this;

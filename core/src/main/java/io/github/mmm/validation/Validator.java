@@ -3,6 +3,7 @@
 package io.github.mmm.validation;
 
 import io.github.mmm.base.lang.Composable;
+import io.github.mmm.validation.impl.ValidatorNone;
 
 /**
  * A {@link Validator} allows to {@link #validate(Object) validate} according values. <br>
@@ -74,6 +75,17 @@ public interface Validator<V> extends Composable<Validator<?>> {
     children[0] = this;
     System.arraycopy(validators, 0, children, 1, validators.length);
     return new ComposedValidator<>(validators);
+  }
+
+  /**
+   * @param <T> type of the value to {@link #validate(Object) validate}.
+   * @return an instance of {@link Validator} that always return {@link ValidationResultValid} (accepts any value as
+   *         valid input).
+   */
+  @SuppressWarnings({ "unchecked" })
+  static <T> Validator<T> none() {
+
+    return (Validator<T>) ValidatorNone.INSTANCE;
   }
 
 }

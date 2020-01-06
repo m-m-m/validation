@@ -9,7 +9,6 @@ import io.github.mmm.base.lang.Builder;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.ComposedValidator;
 import io.github.mmm.validation.Validator;
-import io.github.mmm.validation.ValidatorNone;
 import io.github.mmm.validation.ValidatorRegistry;
 
 /**
@@ -139,7 +138,7 @@ public abstract class ObjectValidatorBuilder<V, PARENT, SELF extends ObjectValid
 
     int size = this.validators.size();
     if (size == 0) {
-      return ValidatorNone.getInstance();
+      return Validator.none();
     } else if (size == 1) {
       return this.validators.get(0);
     } else {
