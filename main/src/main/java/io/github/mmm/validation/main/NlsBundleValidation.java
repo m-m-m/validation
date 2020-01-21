@@ -43,6 +43,14 @@ public class NlsBundleValidation extends NlsBundle {
   }
 
   /**
+   * @return the {@link NlsMessage}.
+   */
+  public NlsMessage errorPasswordMismatch() {
+
+    return create("errorPasswordMismatch", "The passwords have to match.", NlsArguments.of());
+  }
+
+  /**
    * @see io.github.mmm.validation.main.ValidatorCompare
    *
    * @param value is the invalid value.
