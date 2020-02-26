@@ -19,7 +19,7 @@ public class ValidatorMapSize extends AbstractValidatorRange<Map<?, ?>, Number> 
   /**
    * The constructor.
    *
-   * @param range is the {@link Range} the value has to be {@link Range#isContained(Object) contained in}.
+   * @param range is the {@link Range} the value has to be {@link Range#contains(Object) contained in}.
    */
   public ValidatorMapSize(Range<Number> range) {
 

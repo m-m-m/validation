@@ -10,7 +10,7 @@ import io.github.mmm.validation.AbstractValueValidator;
 
 /**
  * {@link io.github.mmm.validation.Validator} {@link #validate(Object, Object) validating} that a given value
- * {@link Range#isContained(Object) is contained} in a given {@link Range}.
+ * {@link Range#contains(Object) is contained} in a given {@link Range}.
  *
  * @param <V> the generic type of the value to {@link #validate(Object) validate}.
  * @param <R> the generic type of the {@link Range}-bounds.
@@ -28,7 +28,7 @@ public class AbstractValidatorRange<V, R> extends AbstractValueValidator<V> {
   /**
    * The constructor.
    *
-   * @param range is the {@link Range} the value has to be {@link Range#isContained(Object) contained in}.
+   * @param range is the {@link Range} the value has to be {@link Range#contains(Object) contained in}.
    */
   public AbstractValidatorRange(Range<R> range) {
 
@@ -66,7 +66,7 @@ public class AbstractValidatorRange<V, R> extends AbstractValueValidator<V> {
   protected NlsMessage validateNotNull(V value) {
 
     R convertedValue = convertValue(value);
-    if (this.range.isContained(convertedValue)) {
+    if (this.range.contains(convertedValue)) {
       return null;
     } else {
       return NlsBundleValidation.INSTANCE.errorValueOutOfRange(convertedValue, this.range.getMin(),
