@@ -4,7 +4,7 @@ package io.github.mmm.validation.collection;
 
 import java.util.Collection;
 
-import io.github.mmm.base.range.NumberRange;
+import io.github.mmm.base.range.NumberRangeType;
 import io.github.mmm.base.range.Range;
 import io.github.mmm.validation.main.AbstractValidatorRange;
 
@@ -35,7 +35,7 @@ public class ValidatorCollectionSize extends AbstractValidatorRange<Collection<?
    */
   public ValidatorCollectionSize(int maxLength) {
 
-    this(new NumberRange(null, Integer.valueOf(maxLength)));
+    this(new NumberRangeType(null, Integer.valueOf(maxLength)));
   }
 
   @Override

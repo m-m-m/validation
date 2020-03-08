@@ -62,6 +62,22 @@ public interface Validator<V> extends Composable<Validator<?>> {
   }
 
   /**
+   * @return the minimum allowed value. Typically of type {@literal <V>} but this can not be guaranteed.
+   */
+  default Object getMin() {
+
+    return null;
+  }
+
+  /**
+   * @return the maximum allowed value. Typically of type {@literal <V>} but this can not be guaranteed.
+   */
+  default Object getMax() {
+
+    return null;
+  }
+
+  /**
    * @param validators the {@link Validator}s to append.
    * @return a new {@link Validator} instance composing this {@link Validator} with the given {@code validators}.
    */

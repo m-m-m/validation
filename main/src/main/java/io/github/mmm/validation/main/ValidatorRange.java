@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation.main;
 
-import io.github.mmm.base.range.GenericRange;
+import io.github.mmm.base.range.RangeType;
 import io.github.mmm.base.range.Range;
 
 /**
@@ -33,7 +33,19 @@ public class ValidatorRange<V> extends AbstractValidatorRange<V, V> {
    */
   public ValidatorRange(V min, V max) {
 
-    this(new GenericRange<>(min, max));
+    this(new RangeType<>(min, max));
+  }
+
+  @Override
+  public Object getMin() {
+
+    return this.range.getMin();
+  }
+
+  @Override
+  public Object getMax() {
+
+    return this.range.getMax();
   }
 
 }

@@ -86,6 +86,12 @@ public abstract class ValidatorTemporalAfter<V> extends AbstractValueValidator<V
    */
   protected abstract boolean isAfter(V value, V limit);
 
+  @Override
+  public Object getMin() {
+
+    return this.bound;
+  }
+
   private Object getSource() {
 
     if (this.boundSource == null) {

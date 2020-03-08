@@ -4,7 +4,7 @@ package io.github.mmm.validation.string;
 
 import java.util.Collection;
 
-import io.github.mmm.base.range.NumberRange;
+import io.github.mmm.base.range.NumberRangeType;
 import io.github.mmm.base.range.Range;
 import io.github.mmm.validation.main.AbstractValidatorRange;
 
@@ -36,7 +36,7 @@ public class ValidatorCharSequnceSize extends AbstractValidatorRange<CharSequenc
    */
   public ValidatorCharSequnceSize(int maxLength) {
 
-    this(new NumberRange(null, Integer.valueOf(maxLength)));
+    this(new NumberRangeType(null, Integer.valueOf(maxLength)));
   }
 
   @Override

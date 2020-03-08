@@ -23,7 +23,8 @@ public class AbstractValidatorRange<V, R> extends AbstractValueValidator<V> {
   /** @see #getCode() */
   public static final String CODE = "Range";
 
-  private final Range<R> range;
+  /** @see #getRange() */
+  protected final Range<R> range;
 
   /**
    * The constructor.

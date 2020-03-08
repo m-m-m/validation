@@ -84,6 +84,12 @@ public abstract class ValidatorTemporalBefore<V> extends AbstractValueValidator<
    */
   protected abstract boolean isBefore(V value, V limit);
 
+  @Override
+  public Object getMax() {
+
+    return this.bound;
+  }
+
   private Object getSource() {
 
     if (this.boundSource == null) {

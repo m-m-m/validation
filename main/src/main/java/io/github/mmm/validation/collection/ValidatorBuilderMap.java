@@ -4,7 +4,7 @@ package io.github.mmm.validation.collection;
 
 import java.util.Map;
 
-import io.github.mmm.base.range.GenericRange;
+import io.github.mmm.base.range.RangeType;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.main.ObjectValidatorBuilder;
 
@@ -42,7 +42,7 @@ public class ValidatorBuilderMap<K, V, PARENT>
       if (max != null) {
         iMax = Integer.valueOf(max);
       }
-      add(new ValidatorMapSize(new GenericRange<>(iMin, iMax)));
+      add(new ValidatorMapSize(new RangeType<>(iMin, iMax)));
     }
     return self();
   }

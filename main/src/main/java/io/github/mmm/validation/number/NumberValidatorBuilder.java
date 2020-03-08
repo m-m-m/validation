@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation.number;
 
-import io.github.mmm.base.range.NumberRange;
+import io.github.mmm.base.range.NumberRangeType;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.main.ComparableValidatorBuilder;
 import io.github.mmm.validation.main.ValidatorRange;
@@ -42,7 +42,7 @@ public class NumberValidatorBuilder<V extends Number & Comparable, PARENT, SELF 
       if (max != null) {
         dMax = Double.valueOf(max);
       }
-      add(new ValidatorRange<>(new NumberRange(dMin, dMax)));
+      add(new ValidatorRange<>(new NumberRangeType(dMin, dMax)));
     }
     return self();
   }

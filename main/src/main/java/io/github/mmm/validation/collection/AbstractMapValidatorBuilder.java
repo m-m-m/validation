@@ -5,7 +5,7 @@ package io.github.mmm.validation.collection;
 import java.util.Map;
 import java.util.function.BiFunction;
 
-import io.github.mmm.base.range.GenericRange;
+import io.github.mmm.base.range.RangeType;
 import io.github.mmm.base.range.Range;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.Validator;
@@ -62,7 +62,7 @@ public abstract class AbstractMapValidatorBuilder<K, V, M extends Map<K, V>, PAR
    */
   public SELF size(int min, int max) {
 
-    return size(new GenericRange<>(Integer.valueOf(min), Integer.valueOf(max)));
+    return size(new RangeType<>(Integer.valueOf(min), Integer.valueOf(max)));
   }
 
   /**

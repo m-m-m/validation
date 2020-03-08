@@ -4,7 +4,7 @@ package io.github.mmm.validation.collection;
 
 import java.util.Map;
 
-import io.github.mmm.base.range.NumberRange;
+import io.github.mmm.base.range.NumberRangeType;
 import io.github.mmm.base.range.Range;
 import io.github.mmm.validation.main.AbstractValidatorRange;
 
@@ -34,7 +34,7 @@ public class ValidatorMapSize extends AbstractValidatorRange<Map<?, ?>, Number> 
    */
   public ValidatorMapSize(int maxLength) {
 
-    this(new NumberRange(null, Integer.valueOf(maxLength)));
+    this(new NumberRangeType(null, Integer.valueOf(maxLength)));
   }
 
   @Override

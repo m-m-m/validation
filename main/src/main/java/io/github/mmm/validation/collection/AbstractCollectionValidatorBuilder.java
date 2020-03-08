@@ -5,7 +5,7 @@ package io.github.mmm.validation.collection;
 import java.util.Collection;
 import java.util.function.BiFunction;
 
-import io.github.mmm.base.range.GenericRange;
+import io.github.mmm.base.range.RangeType;
 import io.github.mmm.base.range.Range;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.Validator;
@@ -58,7 +58,7 @@ public abstract class AbstractCollectionValidatorBuilder<E, V extends Collection
    */
   public SELF size(int min, int max) {
 
-    return size(new GenericRange<>(Integer.valueOf(min), Integer.valueOf(max)));
+    return size(new RangeType<>(Integer.valueOf(min), Integer.valueOf(max)));
   }
 
   /**
@@ -84,7 +84,7 @@ public abstract class AbstractCollectionValidatorBuilder<E, V extends Collection
       if (max != null) {
         iMax = Integer.valueOf(max);
       }
-      add(new ValidatorCollectionSize(new GenericRange<>(iMin, iMax)));
+      add(new ValidatorCollectionSize(new RangeType<>(iMin, iMax)));
     }
     return self();
   }

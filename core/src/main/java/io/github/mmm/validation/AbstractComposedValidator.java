@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 public abstract class AbstractComposedValidator<V, C> extends AbstractValidator<V> {
 
-  private final Validator<? super C>[] children;
+  /** {@link #getChild(int)} */
+  protected final Validator<? super C>[] children;
 
   /**
    * The constructor.
