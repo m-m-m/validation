@@ -11,7 +11,7 @@ import io.github.mmm.nls.argument.NlsArguments;
  *
  * @since 1.0.0
  */
-public class NlsBundleValidation extends NlsBundle {
+public final class NlsBundleValidation extends NlsBundle {
 
   /** The singleton instance. */
   public static final NlsBundleValidation INSTANCE = new NlsBundleValidation();
