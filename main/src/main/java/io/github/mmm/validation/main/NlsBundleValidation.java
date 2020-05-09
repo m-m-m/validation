@@ -39,7 +39,7 @@ public final class NlsBundleValidation extends NlsBundle {
    */
   public NlsMessage errorMandatory() {
 
-    return create("errorMandatory", "The value has to be filled.", NlsArguments.of());
+    return create("errorMandatory", "The value has to be filled.");
   }
 
   /**
@@ -47,7 +47,7 @@ public final class NlsBundleValidation extends NlsBundle {
    */
   public NlsMessage errorPasswordMismatch() {
 
-    return create("errorPasswordMismatch", "The passwords have to match.", NlsArguments.of());
+    return create("errorPasswordMismatch", "The passwords have to match.");
   }
 
   /**
@@ -70,7 +70,7 @@ public final class NlsBundleValidation extends NlsBundle {
    */
   public NlsMessage errorValueNotInPast(Object value) {
 
-    return create("errorValueNotInPast", "The value has to be in the past.", NlsArguments.of());
+    return create("errorValueNotInPast", "The value has to be in the past.");
   }
 
   /**
@@ -79,7 +79,7 @@ public final class NlsBundleValidation extends NlsBundle {
    */
   public NlsMessage errorValueNotInFuture(Object value) {
 
-    return create("errorValueNotInFuture", "The value has to be in the future.", NlsArguments.of());
+    return create("errorValueNotInFuture", "The value has to be in the future.");
   }
 
   /**
