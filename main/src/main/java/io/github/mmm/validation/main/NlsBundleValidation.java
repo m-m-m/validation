@@ -60,7 +60,7 @@ public final class NlsBundleValidation extends NlsBundle {
    */
   public NlsMessage errorValueComparison(Object value, Object operation, Object value2) {
 
-    return create("errorValueComparison", "The value needs to be {comparator} '{value}'.",
+    return create("errorValueComparison", "The value needs to be {operation} '{value}'.",
         NlsArguments.of(KEY_OPERATION, operation, KEY_VALUE, value2));
   }
 
@@ -112,6 +112,32 @@ public final class NlsBundleValidation extends NlsBundle {
 
     return create("errorValueOutOfRange", "The value needs to be in the range from {min} to {max}.",
         NlsArguments.ofMinMax(min, max));
+  }
+
+  /**
+   * @param value is the invalid value.
+   * @param min is the minimum length.
+   * @param max is the maximum length.
+   * @return the {@link NlsMessage}
+   */
+  public NlsMessage errorLengthOutOfRange(Object value, Object min, Object max) {
+
+    return create("errorLengthOutOfRange", "The length needs to be in the range from {min} to {max}.",
+        NlsArguments.ofMinMax(min, max));
+  }
+
+  /**
+   * @see io.github.mmm.validation.main.ValidatorCompare
+   *
+   * @param value is the invalid value.
+   * @param operation is the {@link io.github.mmm.base.compare.CompareOperator}.
+   * @param value2 is the value to compare to (second argument).
+   * @return the {@link NlsMessage}
+   */
+  public NlsMessage errorLengthComparison(Object value, Object operation, Object value2) {
+
+    return create("errorLengthComparison", "The length needs to be {operation} '{value}'.",
+        NlsArguments.of(KEY_OPERATION, operation, KEY_VALUE, value2));
   }
 
 }

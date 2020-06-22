@@ -48,21 +48,49 @@ public abstract class CharSequenceValidatorBuilder<V extends CharSequence, PAREN
     return add(new ValidatorPattern(pattern));
   }
 
+  /**
+   * @param min the minimum length allowed.
+   * @return this build instance for fluent API calls.
+   */
+  public SELF min(int min) {
+
+    return range(Integer.valueOf(min), null);
+  }
+
+  /**
+   * @param max the maximum length allowed.
+   * @return this build instance for fluent API calls.
+   */
+  public SELF max(int max) {
+
+    return range(null, Integer.valueOf(max));
+  }
+
+  /**
+   * @param min the minimum length allowed or {@code null} for no lower bound.
+   * @param max the maximum length allowed or {@code null} for no upper bound.
+   * @return this build instance for fluent API calls.
+   */
+  public SELF range(Integer min, Integer max) {
+
+    if ((min != null) || (max != null)) {
+      add(new ValidatorCharSequnceSize(new NumberRangeType(min, max)));
+    }
+    return self();
+  }
+
   @Override
   public SELF range(String min, String max) {
 
-    if ((min != null) || (max != null)) {
-      Double dMin = null;
-      if (min != null) {
-        dMin = Double.valueOf(min);
-      }
-      Double dMax = null;
-      if (max != null) {
-        dMax = Double.valueOf(max);
-      }
-      add(new ValidatorCharSequnceSize(new NumberRangeType(dMin, dMax)));
+    Integer iMin = null;
+    if (min != null) {
+      iMin = Integer.valueOf(min);
     }
-    return self();
+    Integer iMax = null;
+    if (max != null) {
+      iMax = Integer.valueOf(max);
+    }
+    return range(iMin, iMax);
   }
 
 }

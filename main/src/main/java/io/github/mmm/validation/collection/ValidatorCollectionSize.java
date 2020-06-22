@@ -44,4 +44,10 @@ public class ValidatorCollectionSize extends AbstractValidatorRange<Collection<?
     return Integer.valueOf(value.size());
   }
 
+  @Override
+  protected boolean isLength() {
+
+    return true;
+  }
+
 }

@@ -45,4 +45,10 @@ public class ValidatorCharSequnceSize extends AbstractValidatorRange<CharSequenc
     return Integer.valueOf(value.length());
   }
 
+  @Override
+  protected boolean isLength() {
+
+    return true;
+  }
+
 }

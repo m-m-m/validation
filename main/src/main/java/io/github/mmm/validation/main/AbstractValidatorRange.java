@@ -4,6 +4,7 @@ package io.github.mmm.validation.main;
 
 import java.util.Objects;
 
+import io.github.mmm.base.compare.CompareOperator;
 import io.github.mmm.base.range.Range;
 import io.github.mmm.nls.NlsMessage;
 import io.github.mmm.validation.AbstractValueValidator;
@@ -70,9 +71,39 @@ public class AbstractValidatorRange<V, R> extends AbstractValueValidator<V> {
     if (this.range.contains(convertedValue)) {
       return null;
     } else {
-      return NlsBundleValidation.INSTANCE.errorValueOutOfRange(convertedValue, this.range.getMin(),
-          this.range.getMax());
+      R min = this.range.getMin();
+      R max = this.range.getMax();
+      R bound = null;
+      CompareOperator operation = null;
+      if (min == null) {
+        operation = CompareOperator.LESS_OR_EQUAL;
+        bound = max;
+      } else if (max == null) {
+        operation = CompareOperator.GREATER_OR_EQUAL;
+        bound = min;
+      }
+      if (isLength()) {
+        if (operation == null) {
+          return NlsBundleValidation.INSTANCE.errorLengthOutOfRange(convertedValue, min, max);
+        } else {
+          return NlsBundleValidation.INSTANCE.errorLengthComparison(convertedValue, operation, bound);
+        }
+      } else {
+        if (operation == null) {
+          return NlsBundleValidation.INSTANCE.errorValueOutOfRange(convertedValue, min, max);
+        } else {
+          return NlsBundleValidation.INSTANCE.errorValueComparison(convertedValue, operation, bound);
+        }
+      }
     }
+  }
+
+  /**
+   * @return {@code true} if validating the lenght of the value, {@code false} otherwise.
+   */
+  protected boolean isLength() {
+
+    return false;
   }
 
   @Override

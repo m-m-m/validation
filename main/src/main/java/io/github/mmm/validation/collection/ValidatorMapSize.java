@@ -43,4 +43,10 @@ public class ValidatorMapSize extends AbstractValidatorRange<Map<?, ?>, Number> 
     return Integer.valueOf(value.size());
   }
 
+  @Override
+  protected boolean isLength() {
+
+    return true;
+  }
+
 }
