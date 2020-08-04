@@ -16,8 +16,8 @@ import io.github.mmm.validation.main.NlsBundleValidation;
  */
 public abstract class ValidatorTemporalFuture<V> extends AbstractValueValidator<V> {
 
-  /** @see #getCode() */
-  public static final String CODE = "Future";
+  /** @see #getId() */
+  public static final String ID = "Future";
 
   /**
    * The constructor.
@@ -28,9 +28,9 @@ public abstract class ValidatorTemporalFuture<V> extends AbstractValueValidator<
   }
 
   @Override
-  protected String getCode() {
+  public String getId() {
 
-    return CODE;
+    return ID;
   }
 
   @Override

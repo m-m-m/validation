@@ -29,6 +29,12 @@ import io.github.mmm.validation.impl.ValidatorNone;
 public interface Validator<V> extends Composable<Validator<?>> {
 
   /**
+   * @see #isMandatory()
+   * @see #getId()
+   */
+  String ID_MANDATORY = "Mandatory";
+
+  /**
    * This method validates the given {@code value}.
    *
    * @param value is the value to validate.
@@ -53,12 +59,28 @@ public interface Validator<V> extends Composable<Validator<?>> {
   ValidationResult validate(V value, Object valueSource);
 
   /**
+   * @return the identifier of this {@link Validator}.
+   * @see ValidationResult#getCode()
+   */
+  String getId();
+
+  /**
    * @return {@code true} if this is a validator for mandatory fields (that will not accept {@code null} or empty
    *         values), {@code false} otherwise.
    */
   default boolean isMandatory() {
 
-    return false;
+    return containsId(ID_MANDATORY);
+  }
+
+  /**
+   * @param id the {@link #getId() ID} of the {@link Validator} to check for.
+   * @return {@code true} if this {@link Validator} {@link #getId() has} the given ID or recursively
+   *         {@link ComposedValidator#getChild(int) contains} such {@link Validator}.
+   */
+  default boolean containsId(String id) {
+
+    return (getId().equals(id));
   }
 
   /**
@@ -78,19 +100,40 @@ public interface Validator<V> extends Composable<Validator<?>> {
   }
 
   /**
-   * @param validators the {@link Validator}s to append.
-   * @return a new {@link Validator} instance composing this {@link Validator} with the given {@code validators}.
+   * @param <T> type of the value to {@link #validate(Object) validate}.
+   * @param validator the {@link Validator} to append.
+   * @return a new {@link Validator} instance composing this {@link Validator} with the given {@link Validator}.
    */
-  @SuppressWarnings("unchecked")
-  default Validator<V> append(Validator<? super V>... validators) {
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+  default <T> Validator<T> append(Validator<?> validator) {
+
+    if ((validator == null) || (validator == Validator.none())) {
+      return (Validator<T>) this;
+    }
+    return new ComposedValidator(this, validator);
+  }
+
+  /**
+   * @param <T> type of the value to {@link #validate(Object) validate}.
+   * @param validators the {@link Validator}s to append.
+   * @return a new {@link Validator} instance composing this {@link Validator} with the given {@link Validator}s.
+   */
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+  default <T> Validator<T> append(Validator<?>... validators) {
 
     if ((validators == null) || (validators.length == 0)) {
-      return this;
+      return (Validator<T>) this;
     }
-    Validator<? super V>[] children = new Validator[validators.length + 1];
+    if (validators.length == 1) {
+      if (validators[0] == Validator.none()) {
+        return (Validator<T>) this;
+      }
+      return new ComposedValidator(this, validators[0]);
+    }
+    Validator<?>[] children = new Validator[validators.length + 1];
     children[0] = this;
     System.arraycopy(validators, 0, children, 1, validators.length);
-    return new ComposedValidator<>(validators);
+    return new ComposedValidator(validators);
   }
 
   /**

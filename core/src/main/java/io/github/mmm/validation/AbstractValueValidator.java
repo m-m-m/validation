@@ -32,7 +32,7 @@ public abstract class AbstractValueValidator<V> extends AbstractValidator<V> {
     }
     ValidationResult result = ValidationResultValid.get();
     if (failureMessage != null) {
-      result = new ValidationFailure(getCode(), failureMessage, source2string(valueSource));
+      result = new ValidationFailure(getId(), failureMessage, source2string(valueSource));
     }
     return result;
   }

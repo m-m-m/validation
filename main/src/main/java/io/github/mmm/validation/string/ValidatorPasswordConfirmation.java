@@ -19,8 +19,8 @@ import io.github.mmm.validation.main.NlsBundleValidation;
  */
 public class ValidatorPasswordConfirmation extends AbstractValueValidator<CharSequence> {
 
-  /** @see #getCode() */
-  public static final String CODE = "PwdConfirm";
+  /** @see #getId() */
+  public static final String ID = "PwdConfirm";
 
   private final Supplier<? extends CharSequence> passwordSupplier;
 
@@ -36,9 +36,9 @@ public class ValidatorPasswordConfirmation extends AbstractValueValidator<CharSe
   }
 
   @Override
-  protected String getCode() {
+  public String getId() {
 
-    return CODE;
+    return ID;
   }
 
   @Override

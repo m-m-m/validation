@@ -21,8 +21,8 @@ import io.github.mmm.validation.AbstractValueValidator;
 @SuppressWarnings("rawtypes")
 public class AbstractValidatorRange<V, R> extends AbstractValueValidator<V> {
 
-  /** @see #getCode() */
-  public static final String CODE = "Range";
+  /** @see #getId() */
+  public static final String ID = "Range";
 
   /** @see #getRange() */
   protected final Range<R> range;
@@ -39,9 +39,9 @@ public class AbstractValidatorRange<V, R> extends AbstractValueValidator<V> {
   }
 
   @Override
-  protected String getCode() {
+  public String getId() {
 
-    return CODE;
+    return ID;
   }
 
   /**

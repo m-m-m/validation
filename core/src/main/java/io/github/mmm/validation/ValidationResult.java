@@ -34,11 +34,12 @@ public interface ValidationResult extends Composable<ValidationResult>, Localiza
   String getSource();
 
   /**
-   * This method gets the <em>code</em> of this {@link ValidationResult}. The code is a stable identifier that indicates
-   * the type of the failure. It can be used for automated testing in order to make the test-cases independent from the
-   * actual message texts so they are maintainable and will not break e.g. if typos are fixed in the messages.
-   *
-   * @return the failure code.
+   * @return the failure code or {@code null} if {@link #isValid() valid}. For a single {@link ValidationFailure} this
+   *         will be the {@link Validator#getId() ID} of the failing {@link Validator}. The code is a stable identifier
+   *         that indicates the type of the failure. It can be used for automated testing in order to make the
+   *         test-cases independent from the actual message texts so they are maintainable and will not break e.g. if
+   *         typos are fixed in the messages.
+   * @see ComposedValidationFailure#CODE
    */
   String getCode();
 

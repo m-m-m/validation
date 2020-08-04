@@ -16,7 +16,7 @@ import io.github.mmm.base.exception.RuntimeIoException;
 public class ComposedValidationFailure extends AbstractValidationResult {
 
   /** @see #getCode() */
-  public static final String CODE = ComposedValidator.CODE;
+  public static final String CODE = ComposedValidator.ID;
 
   private ValidationResult[] failures;
 

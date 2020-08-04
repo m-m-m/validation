@@ -70,21 +70,63 @@ public abstract class AbstractComposedValidator<V, C> extends AbstractValidator<
     return this.children[index];
   }
 
-  @SuppressWarnings("unchecked")
   @Override
-  public Validator<V> append(Validator<? super V>... validators) {
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+  public <T> Validator<T> append(Validator<?> validator) {
 
-    if ((validators == null) || (validators.length == 0)) {
-      return this;
+    if ((validator == null) || (validator == Validator.none())) {
+      return (Validator<T>) this;
     }
     if (this instanceof ComposedValidator) {
-      Validator<? super V>[] composed = new Validator[this.children.length + validators.length];
+      Validator<?>[] composed = new Validator[this.children.length + 1];
+      System.arraycopy(this.children, 0, composed, 0, this.children.length);
+      composed[this.children.length] = validator;
+      return new ComposedValidator(composed);
+    } else {
+      return new ComposedValidator(this, validator);
+    }
+  }
+
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+  @Override
+  public <T> Validator<T> append(Validator<?>... validators) {
+
+    if ((validators == null) || (validators.length == 0)) {
+      return (Validator<T>) this;
+    }
+    if (validators.length == 1) {
+      if (validators[0] == Validator.none()) {
+        return (Validator<T>) this;
+      }
+    }
+    if (this instanceof ComposedValidator) {
+      Validator<?>[] composed = new Validator[this.children.length + validators.length];
       System.arraycopy(this.children, 0, composed, 0, this.children.length);
       System.arraycopy(validators, 0, composed, this.children.length, validators.length);
-      return new ComposedValidator<>(composed);
+      return new ComposedValidator(composed);
     } else {
       return super.append(validators);
     }
+  }
+
+  @Override
+  public boolean containsId(String id) {
+
+    if (super.containsId(id)) {
+      return true;
+    }
+    for (Validator<? super C> child : this.children) {
+      if (child.containsId(id)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(super.hashCode(), this.children);
   }
 
   @Override

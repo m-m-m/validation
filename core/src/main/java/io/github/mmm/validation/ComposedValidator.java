@@ -13,8 +13,8 @@ package io.github.mmm.validation;
  */
 public class ComposedValidator<V> extends AbstractComposedValidator<V, V> {
 
-  /** @see #getCode() */
-  public static final String CODE = "ComposedValidator";
+  /** @see #getId() */
+  public static final String ID = "ComposedValidator";
 
   /**
    * The constructor.
@@ -28,9 +28,9 @@ public class ComposedValidator<V> extends AbstractComposedValidator<V, V> {
   }
 
   @Override
-  protected String getCode() {
+  public String getId() {
 
-    return CODE;
+    return ID;
   }
 
   @Override

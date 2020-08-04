@@ -94,7 +94,7 @@ public abstract class ObjectValidatorBuilder<V, PARENT, SELF extends ObjectValid
    */
   public SELF mandatory() {
 
-    return add(ValidatorMandatory.getInstance());
+    return add(ValidatorMandatory.get());
   }
 
   /**

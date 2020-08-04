@@ -140,4 +140,49 @@ public final class NlsBundleValidation extends NlsBundle {
         NlsArguments.of(KEY_OPERATION, operation, KEY_VALUE, value2));
   }
 
+  /**
+   * @param value is the value that is no valid email address.
+   * @return the {@link NlsMessage}
+   */
+  public NlsMessage errorNoEmail(Object value) {
+
+    return create("errorNoEmail", "The value has to be a valid email address.");
+  }
+
+  /**
+   * @param value is the value that is no valid phone number.
+   * @return the {@link NlsMessage}
+   */
+  public NlsMessage errorNoPhoneNumber(Object value) {
+
+    return create("errorNoPhoneNumber", "The value has to be a valid phone number.");
+  }
+
+  /**
+   * @param value is the value that is no valid Internet host (hostname or IP address).
+   * @return the {@link NlsMessage}
+   */
+  public NlsMessage errorNoHost(Object value) {
+
+    return create("errorNoHost", "The value has to be a valid hostname or IP-address.");
+  }
+
+  /**
+   * @param value is the value that is no valid Internet hostname.
+   * @return the {@link NlsMessage}
+   */
+  public NlsMessage errorNoHostName(Object value) {
+
+    return create("errorNoHostName", "The value has to be a valid hostname.");
+  }
+
+  /**
+   * @param value is the value that is no valid IP-address.
+   * @return the {@link NlsMessage}
+   */
+  public NlsMessage errorNoIpAddress(Object value) {
+
+    return create("errorNoIpAddress", "The value has to be a valid IP-address.");
+  }
+
 }

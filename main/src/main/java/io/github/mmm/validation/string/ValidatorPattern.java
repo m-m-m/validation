@@ -17,8 +17,8 @@ import io.github.mmm.validation.main.NlsBundleValidation;
  */
 public class ValidatorPattern extends AbstractValueValidator<CharSequence> {
 
-  /** @see #getCode() */
-  public static final String CODE = "Pattern";
+  /** @see #getId() */
+  public static final String ID = "Pattern";
 
   private final Pattern pattern;
 
@@ -44,9 +44,9 @@ public class ValidatorPattern extends AbstractValueValidator<CharSequence> {
   }
 
   @Override
-  protected String getCode() {
+  public String getId() {
 
-    return CODE;
+    return ID;
   }
 
   @Override
@@ -54,7 +54,7 @@ public class ValidatorPattern extends AbstractValueValidator<CharSequence> {
 
     boolean matches = this.pattern.matcher(value).matches();
     if (!matches) {
-      return NlsBundleValidation.INSTANCE.errorValueFormat(null, this.pattern);
+      return NlsBundleValidation.INSTANCE.errorValueFormat(value, this.pattern);
     }
     return null;
   }

@@ -22,7 +22,7 @@ public final class ValidatorNone extends AbstractValidator<Object> {
   /**
    * The constructor.
    */
-  public ValidatorNone() {
+  private ValidatorNone() {
 
     super();
   }
@@ -33,11 +33,26 @@ public final class ValidatorNone extends AbstractValidator<Object> {
     return ValidationResultValid.get();
   }
 
+  @Override
+  public Validator<Object> append(Validator<? super Object> validator) {
+
+    if (validator == null) {
+      return this;
+    }
+    return validator;
+  }
+
   @SuppressWarnings("unchecked")
   @Override
   public Validator<Object> append(Validator<? super Object>... validators) {
 
-    return new ComposedValidator<>(validators);
+    if (validators.length == 0) {
+      return this;
+    } else if (validators.length == 1) {
+      return validators[0];
+    } else {
+      return new ComposedValidator<>(validators);
+    }
   }
 
   @Override

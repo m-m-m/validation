@@ -17,8 +17,8 @@ import io.github.mmm.validation.ValidationResult;
  */
 public class ValidatorMandatory extends AbstractValueValidator<Object> {
 
-  /** @see #getCode() */
-  public static final String CODE = "Mandatory";
+  /** @see #getId() */
+  public static final String ID = ID_MANDATORY;
 
   private static final ValidatorMandatory INSTANCE = new ValidatorMandatory();
 
@@ -31,15 +31,15 @@ public class ValidatorMandatory extends AbstractValueValidator<Object> {
   }
 
   @Override
-  protected String getCode() {
+  public String getId() {
 
-    return CODE;
+    return ID;
   }
 
   /**
    * @return the singleton instance of this class.
    */
-  public static ValidatorMandatory getInstance() {
+  public static ValidatorMandatory get() {
 
     return INSTANCE;
   }

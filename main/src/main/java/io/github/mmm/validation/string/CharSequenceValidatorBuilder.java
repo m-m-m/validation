@@ -93,4 +93,64 @@ public abstract class CharSequenceValidatorBuilder<V extends CharSequence, PAREN
     return range(iMin, iMax);
   }
 
+  /**
+   * Adds a {@link ValidatorEmail}.
+   *
+   * @return this build instance for fluent API calls.
+   */
+  public SELF email() {
+
+    return add(ValidatorEmail.get());
+  }
+
+  /**
+   * Adds a {@link ValidatorEmailSpec}.
+   *
+   * @return this build instance for fluent API calls.
+   */
+  public SELF emailSpec() {
+
+    return add(ValidatorEmailSpec.get());
+  }
+
+  /**
+   * Adds a {@link ValidatorPhoneNumber}.
+   *
+   * @return this build instance for fluent API calls.
+   */
+  public SELF phoneNumber() {
+
+    return add(ValidatorPhoneNumber.get());
+  }
+
+  /**
+   * Adds a {@link ValidatorHost} (hostname or IP-address).
+   *
+   * @return this build instance for fluent API calls.
+   */
+  public SELF host() {
+
+    return add(ValidatorHost.get());
+  }
+
+  /**
+   * Adds a {@link ValidatorHostName}.
+   *
+   * @return this build instance for fluent API calls.
+   */
+  public SELF hostname() {
+
+    return add(ValidatorHostName.get());
+  }
+
+  /**
+   * Adds a {@link ValidatorIpAddress}.
+   *
+   * @return this build instance for fluent API calls.
+   */
+  public SELF ipAddress() {
+
+    return add(ValidatorIpAddress.get());
+  }
+
 }

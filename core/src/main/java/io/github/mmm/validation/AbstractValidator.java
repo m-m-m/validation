@@ -2,8 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation;
 
-import java.util.Objects;
-
 /**
  * This is the abstract base class all {@link Validator} implementations should extend.
  *
@@ -22,17 +20,15 @@ public abstract class AbstractValidator<V> implements Validator<V> {
   }
 
   /**
-   * This is the default implementation to retrieve the {@link ValidationResult#getCode() code} of this
-   * {@link Validator}. <br>
+   * {@link AbstractValidator} only provides a default implementation of this method.<br>
    * <b>ATTENTION:</b><br>
-   * This default implementation returns the {@link Class#getSimpleName() classname} of the actual {@link Validator}
-   * implementation. This strategy is chosen for simplicity when implementing a new validator. To ensure stable codes
-   * override this method and return a string constant. This shall at least be done when the name of the class is
-   * changed.
-   *
-   * @return the {@link ValidationResult#getCode() code}.
+   * This default implementation returns the {@link Class#getSimpleName() simple class name} of the actual
+   * {@link Validator} implementation. This strategy is chosen for simplicity when implementing a new {@link Validator}.
+   * To ensure stable IDs override this method and return a string constant. This shall at least be done when the name
+   * of the class is changed to provide backwards compatibility.
    */
-  protected String getCode() {
+  @Override
+  public String getId() {
 
     return getClass().getSimpleName();
   }
@@ -47,26 +43,6 @@ public abstract class AbstractValidator<V> implements Validator<V> {
   public boolean isDynamic() {
 
     return false;
-  }
-
-  @Override
-  @SuppressWarnings("unchecked")
-  public Validator<V> append(Validator<? super V>... validators) {
-
-    Objects.requireNonNull(validators, "validators");
-    if (validators.length == 0) {
-      return this;
-    }
-    if (validators.length == 1) {
-      if (validators[0] == Validator.none()) {
-        return this;
-      }
-      return new ComposedValidator<>(this, validators[0]);
-    }
-    AbstractValidator<? super V>[] array = new AbstractValidator[validators.length + 1];
-    array[0] = this;
-    System.arraycopy(validators, 0, validators, 1, validators.length);
-    return new ComposedValidator<>(array);
   }
 
   /**
@@ -84,7 +60,7 @@ public abstract class AbstractValidator<V> implements Validator<V> {
   @Override
   public int hashCode() {
 
-    return getCode().hashCode();
+    return getId().hashCode();
   }
 
   @Override
@@ -96,6 +72,12 @@ public abstract class AbstractValidator<V> implements Validator<V> {
       return false;
     }
     return true;
+  }
+
+  @Override
+  public String toString() {
+
+    return getId();
   }
 
 }
