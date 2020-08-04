@@ -47,21 +47,10 @@ public final class ValidatorHost extends AbstractValueValidator<CharSequence> {
     if ((length < 2) || (length >= 253)) {
       return false; // quick fail, detailed IDN check in ValidatorHostName (see below)
     }
-    int colonIndex = value.indexOf(':');
-    if (colonIndex >= 0) {
-      if (ValidatorIpAddress.isValidIpV6Address(value)) {
-        return true;
-      }
-    } else {
-      String[] segments = StringHelper.splitHost(value);
-      if (segments == null) {
-        return false;
-      }
-      if (ValidatorIpAddress.isValidIpV4Address(segments)) {
-        return true;
-      } else if (ValidatorHostName.isValidHostName(segments)) {
-        return true;
-      }
+    if (ValidatorIpAddress.isValidIpAddress(value)) {
+      return true;
+    } else if (ValidatorHostName.isValidHostName(value)) {
+      return true;
     }
     return false;
   }
