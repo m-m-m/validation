@@ -33,25 +33,26 @@ public final class ValidatorNone extends AbstractValidator<Object> {
     return ValidationResultValid.get();
   }
 
-  @Override
-  public Validator<Object> append(Validator<? super Object> validator) {
-
-    if (validator == null) {
-      return this;
-    }
-    return validator;
-  }
-
   @SuppressWarnings("unchecked")
   @Override
-  public Validator<Object> append(Validator<? super Object>... validators) {
+  public <T> Validator<T> append(Validator<?> validator) {
+
+    if (validator == null) {
+      return (Validator<T>) this;
+    }
+    return (Validator<T>) validator;
+  }
+
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+  @Override
+  public <T> Validator<T> append(Validator<?>... validators) {
 
     if (validators.length == 0) {
-      return this;
+      return (Validator<T>) this;
     } else if (validators.length == 1) {
-      return validators[0];
+      return (Validator<T>) validators[0];
     } else {
-      return new ComposedValidator<>(validators);
+      return new ComposedValidator(validators);
     }
   }
 
