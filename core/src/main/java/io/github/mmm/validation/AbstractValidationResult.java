@@ -2,6 +2,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation;
 
+import java.io.IOException;
+
+import io.github.mmm.base.exception.RuntimeIoException;
+
 /**
  * Abstract base implementation of {@link ValidationResult}.
  *
@@ -44,10 +48,29 @@ public abstract class AbstractValidationResult implements ValidationResult {
     return this.code;
   }
 
+  /**
+   * @param buffer the {@link Appendable} where to {@link Appendable#append(CharSequence) append} the {@link #getCode()
+   *        code}.
+   * @param space to append an extra space.
+   */
+  protected void appendCode(Appendable buffer, boolean space) {
+
+    try {
+      buffer.append('[');
+      buffer.append(this.code);
+      buffer.append(']');
+      if (space) {
+        buffer.append(' ');
+      }
+    } catch (IOException e) {
+      throw new RuntimeIoException(e);
+    }
+  }
+
   @Override
   public String toString() {
 
-    return "[" + this.code + "] " + this.source + ": " + getMessage();
+    return getMessage(true);
   }
 
 }

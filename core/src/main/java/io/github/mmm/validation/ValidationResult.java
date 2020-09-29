@@ -2,6 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation;
 
+import java.util.Locale;
+
 import io.github.mmm.base.i18n.Localizable;
 import io.github.mmm.base.lang.Composable;
 
@@ -42,6 +44,67 @@ public interface ValidationResult extends Composable<ValidationResult>, Localiza
    * @see ComposedValidationFailure#CODE
    */
   String getCode();
+
+  /**
+   * @see #getMessage(boolean)
+   */
+  @Override
+  default String getMessage() {
+
+    return getLocalizedMessage(Locale.ROOT);
+  }
+
+  /**
+   * @see #getMessage()
+   * @param verbose
+   * @return the localized message.
+   */
+  default String getMessage(boolean verbose) {
+
+    return getLocalizedMessage(Locale.ROOT, verbose);
+  }
+
+  /**
+   * This method gets the resolved and localized message.
+   *
+   * @param verbose the verbose flag (to include {@link #getCode() code}(s), etc.
+   * @return the localized message.
+   */
+  default String getLocalizedMessage(boolean verbose) {
+
+    return getLocalizedMessage(Locale.getDefault(), verbose);
+  }
+
+  /**
+   * This method gets the resolved and localized message.
+   *
+   * @param locale is the {@link Locale} to translate to.
+   * @param verbose the verbose flag (to include {@link #getCode() code}(s), etc.
+   * @return the localized message.
+   */
+  default String getLocalizedMessage(Locale locale, boolean verbose) {
+
+    StringBuilder result = new StringBuilder();
+    getLocalizedMessage(locale, result, verbose);
+    return result.toString();
+  }
+
+  /**
+   * @see #getLocalizedMessage(Locale, Appendable, boolean)
+   */
+  @Override
+  default void getLocalizedMessage(Locale locale, Appendable buffer) {
+
+    getLocalizedMessage(locale, buffer, false);
+  }
+
+  /**
+   * @see #getLocalizedMessage(Locale, Appendable)
+   * @param locale is the {@link Locale} to translate to.
+   * @param buffer the {@link Appendable} where to {@link Appendable#append(CharSequence) write} the message to.
+   * @param verbose the verbose flag (to include {@link #getCode() code}(s), etc.
+   */
+  void getLocalizedMessage(Locale locale, Appendable buffer, boolean verbose);
 
   /**
    * @param result another {@link ValidationResult} to combine with this one.

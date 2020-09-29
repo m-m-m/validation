@@ -49,7 +49,7 @@ public final class ValidationResultValid implements ValidationResult {
   }
 
   @Override
-  public void getLocalizedMessage(Locale locale, Appendable buffer) {
+  public void getLocalizedMessage(Locale locale, Appendable buffer, boolean verbose) {
 
   }
 

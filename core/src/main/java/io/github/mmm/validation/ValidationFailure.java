@@ -60,8 +60,11 @@ public class ValidationFailure extends AbstractValidationResult {
   }
 
   @Override
-  public void getLocalizedMessage(Locale locale, Appendable buffer) {
+  public void getLocalizedMessage(Locale locale, Appendable buffer, boolean verbose) {
 
+    if (verbose) {
+      appendCode(buffer, true);
+    }
     this.message.getLocalizedMessage(locale, buffer);
   }
 

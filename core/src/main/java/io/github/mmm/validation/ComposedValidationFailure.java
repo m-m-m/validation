@@ -101,9 +101,9 @@ public class ComposedValidationFailure extends AbstractValidationResult {
   }
 
   @Override
-  public void getLocalizedMessage(Locale locale, Appendable buffer) {
+  public void getLocalizedMessage(Locale locale, Appendable buffer, boolean verbose) {
 
-    getLocalizedMessage("", locale, buffer);
+    getLocalizedMessage("", locale, buffer, verbose);
   }
 
   /**
@@ -112,12 +112,20 @@ public class ComposedValidationFailure extends AbstractValidationResult {
    * @param indent the current indentation.
    * @param locale the {@link Locale} to translate to.
    * @param buffer the {@link Appendable} where to {@link Appendable#append(CharSequence) write} the message to.
+   * @param verbose the verbose flag (to include {@link #getCode() code}(s), etc.
    */
-  protected void getLocalizedMessage(String indent, Locale locale, Appendable buffer) {
+  protected void getLocalizedMessage(String indent, Locale locale, Appendable buffer, boolean verbose) {
 
     try {
       String separator = null;
       boolean appended = appendSource(indent, this, buffer);
+      if (verbose) {
+        if (!appended) {
+          buffer.append(indent);
+          appended = true;
+        }
+        appendCode(buffer, false);
+      }
       if (appended) {
         separator = getSeparator();
       }
@@ -129,10 +137,10 @@ public class ComposedValidationFailure extends AbstractValidationResult {
           buffer.append(separator);
         }
         if (failure instanceof ComposedValidationFailure) {
-          ((ComposedValidationFailure) failure).getLocalizedMessage(indent, locale, buffer);
+          ((ComposedValidationFailure) failure).getLocalizedMessage(indent, locale, buffer, verbose);
         } else {
           appendSource(indent, failure, buffer);
-          failure.getLocalizedMessage(locale, buffer);
+          failure.getLocalizedMessage(locale, buffer, verbose);
         }
       }
     } catch (IOException e) {
