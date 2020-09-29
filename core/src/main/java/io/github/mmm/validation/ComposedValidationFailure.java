@@ -18,7 +18,9 @@ public class ComposedValidationFailure extends AbstractValidationResult {
   /** @see #getCode() */
   public static final String CODE = ComposedValidator.ID;
 
-  private ValidationResult[] failures;
+  private final ValidationResult[] failures;
+
+  private final boolean appendSources;
 
   /**
    * The constructor.
@@ -28,21 +30,44 @@ public class ComposedValidationFailure extends AbstractValidationResult {
    */
   public ComposedValidationFailure(String source, ValidationResult... failures) {
 
-    this(CODE, source, failures);
+    this(CODE, source, false, failures);
   }
 
   /**
    * The constructor.
    *
-   * @param code is the {@link #getCode() code}.
+   * @param source the optional {@link #getSource() source}. May be {@code null}.
+   * @param appendSources the {@link #isAppendSources() append sources flag}.
+   * @param failures the {@link ValidationResult#isValid() invalid} {@link ValidationResult}s to compose.
+   */
+  public ComposedValidationFailure(String source, boolean appendSources, ValidationResult... failures) {
+
+    this(CODE, source, appendSources, failures);
+  }
+
+  /**
+   * The constructor.
+   *
+   * @param code the {@link #getCode() code}.
+   * @param appendSources the {@link #isAppendSources() append sources flag}.
    * @param source the optional {@link #getSource() source}. May be {@code null}.
    * @param failures the {@link ValidationResult#isValid() invalid} {@link ValidationResult}s to compose.
    */
-  public ComposedValidationFailure(String code, String source, ValidationResult... failures) {
+  public ComposedValidationFailure(String code, String source, boolean appendSources, ValidationResult... failures) {
 
     super(code, source);
     assert (onlyFailures(failures));
+    this.appendSources = appendSources;
     this.failures = failures;
+  }
+
+  /**
+   * @return {@code true} to append the {@link #getSource() source}s of the {@link ValidationFailure}s to the
+   *         {@link #getMessage() message}, {@code false} otherwise.
+   */
+  public boolean isAppendSources() {
+
+    return this.appendSources;
   }
 
   private static boolean onlyFailures(ValidationResult[] failures) {
@@ -78,20 +103,55 @@ public class ComposedValidationFailure extends AbstractValidationResult {
   @Override
   public void getLocalizedMessage(Locale locale, Appendable buffer) {
 
+    getLocalizedMessage("", locale, buffer);
+  }
+
+  /**
+   * @see #getLocalizedMessage(Locale, Appendable)
+   *
+   * @param indent the current indentation.
+   * @param locale the {@link Locale} to translate to.
+   * @param buffer the {@link Appendable} where to {@link Appendable#append(CharSequence) write} the message to.
+   */
+  protected void getLocalizedMessage(String indent, Locale locale, Appendable buffer) {
+
     try {
       String separator = null;
+      boolean appended = appendSource(indent, this, buffer);
+      if (appended) {
+        separator = getSeparator();
+      }
+      indent = indent + "  ";
       for (ValidationResult failure : this.failures) {
         if (separator == null) {
           separator = getSeparator();
         } else {
           buffer.append(separator);
         }
-        String message = failure.getLocalizedMessage(locale);
-        buffer.append(message);
+        if (failure instanceof ComposedValidationFailure) {
+          ((ComposedValidationFailure) failure).getLocalizedMessage(indent, locale, buffer);
+        } else {
+          appendSource(indent, failure, buffer);
+          failure.getLocalizedMessage(locale, buffer);
+        }
       }
     } catch (IOException e) {
       throw new RuntimeIoException(e);
     }
+  }
+
+  private boolean appendSource(String indent, ValidationResult result, Appendable buffer) throws IOException {
+
+    if (this.appendSources && (result != null) && !result.isValid()) {
+      String source = result.getSource();
+      if ((source != null) && !source.isEmpty()) {
+        buffer.append(indent);
+        buffer.append(source);
+        buffer.append(": ");
+        return true;
+      }
+    }
+    return false;
   }
 
   @Override
@@ -110,6 +170,22 @@ public class ComposedValidationFailure extends AbstractValidationResult {
       composedFailures[this.failures.length] = result;
     }
     return new ComposedValidationFailure(getSource(), composedFailures);
+  }
+
+  @Override
+  public boolean containsCode(String code) {
+
+    if (super.containsCode(code)) {
+      return true;
+    }
+    int childCount = getChildCount();
+    for (int i = 0; i < childCount; i++) {
+      ValidationResult child = getChild(i);
+      if (child.containsCode(code)) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }

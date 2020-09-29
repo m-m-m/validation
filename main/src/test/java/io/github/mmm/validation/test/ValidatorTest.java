@@ -61,7 +61,7 @@ public abstract class ValidatorTest extends Assertions {
    * @param invalidValues are the invalid values to check.
    */
   @SuppressWarnings("unchecked")
-  protected static <V> void checkInvalid(Validator<V> validator, String rootFailureMessage, V... invalidValues) {
+  protected static <V> void checkInvalids(Validator<V> validator, String rootFailureMessage, V... invalidValues) {
 
     SoftAssertions assertions = new SoftAssertions();
     for (V value : invalidValues) {

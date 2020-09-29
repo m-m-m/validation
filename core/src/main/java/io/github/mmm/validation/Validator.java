@@ -75,8 +75,8 @@ public interface Validator<V> extends Composable<Validator<?>> {
 
   /**
    * @param id the {@link #getId() ID} of the {@link Validator} to check for.
-   * @return {@code true} if this {@link Validator} {@link #getId() has} the given ID or recursively
-   *         {@link ComposedValidator#getChild(int) contains} such {@link Validator}.
+   * @return {@code true} if this {@link Validator} itself {@link #getId() has} the given ID or recursively
+   *         {@link ComposedValidator#getChild(int) contains} such {@link Validator}, {@code false} otherwise.
    */
   default boolean containsId(String id) {
 

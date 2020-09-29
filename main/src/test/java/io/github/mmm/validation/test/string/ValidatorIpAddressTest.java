@@ -29,7 +29,7 @@ public class ValidatorIpAddressTest extends ValidatorTest {
     String[] invalid = { "1", "1.2", "1.2.3", "1.2.3.256", "1.2.3.260", "1.2.3.300", "1.2.3.4.5", "127.0.0.1:443",
     "1.two", ":::", "2001:db8:a::/64", "[2001:db8:a::/64]", "2001:0db8:0a0b:12f0:0:0:0:1:2",
     "2001:0db8:0a0b:12f0:0:0:0::1" };
-    checkInvalid(validator, "The value has to be a valid IP-address.", invalid);
+    checkInvalids(validator, "The value has to be a valid IP-address.", invalid);
   }
 
 }

@@ -33,7 +33,7 @@ public class ValidatorEmailTest extends ValidatorTest {
     String[] invalid = { "@mail.com", "john.doe@", "john.doe@.com", "john.doe.@mail.com", "John Doe john.doe@mail.com",
     "John Doe <john.doe@mail.com>", "\"John M. Doe\" junior <john.doe@mail.com>", "john()doe@mail.com",
     "john.doe@1.2.3.4", "john.doe@[256.1.1.1]", "john.doe@2001:db8:a::", "john.doe@[2001:db8:a::/64]" };
-    checkInvalid(validator, "The value has to be a valid email address.", invalid);
+    checkInvalids(validator, "The value has to be a valid email address.", invalid);
   }
 
 }

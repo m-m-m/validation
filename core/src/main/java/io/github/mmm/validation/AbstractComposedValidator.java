@@ -39,7 +39,7 @@ public abstract class AbstractComposedValidator<V, C> extends AbstractValidator<
    */
   protected ValidationResult validateChild(C value, String valueSource) {
 
-    ValidationResultBuilder builder = new ValidationResultBuilder();
+    ValidationResultBuilder builder = new ValidationResultBuilder(false);
     validateChild(value, valueSource, builder);
     return builder.build(valueSource);
   }
@@ -115,7 +115,9 @@ public abstract class AbstractComposedValidator<V, C> extends AbstractValidator<
     if (super.containsId(id)) {
       return true;
     }
-    for (Validator<? super C> child : this.children) {
+    int childCount = getChildCount();
+    for (int i = 0; i < childCount; i++) {
+      Validator<? super C> child = getChild(i);
       if (child.containsId(id)) {
         return true;
       }

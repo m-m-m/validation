@@ -13,6 +13,8 @@ import java.util.List;
  */
 public class ValidationResultBuilder {
 
+  private final boolean appendSources;
+
   private ValidationResult result;
 
   private List<ValidationResult> failureList;
@@ -22,7 +24,18 @@ public class ValidationResultBuilder {
    */
   public ValidationResultBuilder() {
 
+    this(true);
+  }
+
+  /**
+   * The constructor.
+   *
+   * @param appendSources the {@link ComposedValidationFailure#isAppendSources() append sources flag}.
+   */
+  public ValidationResultBuilder(boolean appendSources) {
+
     super();
+    this.appendSources = appendSources;
     this.result = ValidationResultValid.get();
   }
 
@@ -55,8 +68,10 @@ public class ValidationResultBuilder {
   public ValidationResult build(String valueSource) {
 
     if (this.failureList != null) {
-      this.result = new ComposedValidationFailure(valueSource,
+      this.result = new ComposedValidationFailure(valueSource, this.appendSources,
           this.failureList.toArray(new ValidationResult[this.failureList.size()]));
+    } else if (this.appendSources && !this.result.isValid()) {
+      return new ComposedValidationFailure(valueSource, this.appendSources, this.result);
     }
     return this.result;
   }

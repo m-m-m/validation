@@ -50,4 +50,15 @@ public interface ValidationResult extends Composable<ValidationResult>, Localiza
    */
   ValidationResult add(ValidationResult result);
 
+  /**
+   * @param code the {@link #getCode() code} to check for.
+   * @return {@code true} if this {@link ValidationResult} itself {@link #getCode() has} the given {@code code} or
+   *         recursively {@link ComposedValidator#getChild(int) contains} such {@link ValidationResult}s, {@code false}
+   *         otherwise.
+   */
+  default boolean containsCode(String code) {
+
+    return (getCode().equals(code));
+  }
+
 }
