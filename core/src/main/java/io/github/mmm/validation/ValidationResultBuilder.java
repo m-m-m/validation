@@ -70,7 +70,8 @@ public class ValidationResultBuilder {
     if (this.failureList != null) {
       this.result = new ComposedValidationFailure(valueSource, this.appendSources,
           this.failureList.toArray(new ValidationResult[this.failureList.size()]));
-    } else if (this.appendSources && !this.result.isValid()) {
+    } else if (!this.result.isValid() && (valueSource != null) && !valueSource.isEmpty()
+        && !valueSource.equals(this.result.getSource())) {
       return new ComposedValidationFailure(valueSource, this.appendSources, this.result);
     }
     return this.result;

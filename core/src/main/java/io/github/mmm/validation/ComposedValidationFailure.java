@@ -103,7 +103,7 @@ public class ComposedValidationFailure extends AbstractValidationResult {
   @Override
   public void getLocalizedMessage(Locale locale, Appendable buffer, boolean verbose) {
 
-    getLocalizedMessage("", locale, buffer, verbose);
+    getLocalizedMessage("", locale, buffer, verbose, this.appendSources);
   }
 
   /**
@@ -113,12 +113,14 @@ public class ComposedValidationFailure extends AbstractValidationResult {
    * @param locale the {@link Locale} to translate to.
    * @param buffer the {@link Appendable} where to {@link Appendable#append(CharSequence) write} the message to.
    * @param verbose the verbose flag (to include {@link #getCode() code}(s), etc.
+   * @param appendSrc the {@link #isAppendSources() append sources flag}.
    */
-  protected void getLocalizedMessage(String indent, Locale locale, Appendable buffer, boolean verbose) {
+  protected void getLocalizedMessage(String indent, Locale locale, Appendable buffer, boolean verbose,
+      boolean appendSrc) {
 
     try {
       String separator = null;
-      boolean appended = appendSource(indent, this, buffer);
+      boolean appended = appendSource(indent, appendSrc, this, buffer);
       if (verbose) {
         if (!appended) {
           buffer.append(indent);
@@ -137,9 +139,9 @@ public class ComposedValidationFailure extends AbstractValidationResult {
           buffer.append(separator);
         }
         if (failure instanceof ComposedValidationFailure) {
-          ((ComposedValidationFailure) failure).getLocalizedMessage(indent, locale, buffer, verbose);
+          ((ComposedValidationFailure) failure).getLocalizedMessage(indent, locale, buffer, verbose, appendSrc);
         } else {
-          appendSource(indent, failure, buffer);
+          appendSource(indent, appendSrc, failure, buffer);
           failure.getLocalizedMessage(locale, buffer, verbose);
         }
       }
@@ -148,9 +150,10 @@ public class ComposedValidationFailure extends AbstractValidationResult {
     }
   }
 
-  private boolean appendSource(String indent, ValidationResult result, Appendable buffer) throws IOException {
+  private boolean appendSource(String indent, boolean appendSrc, ValidationResult result, Appendable buffer)
+      throws IOException {
 
-    if (this.appendSources && (result != null) && !result.isValid()) {
+    if (appendSrc && (result != null) && !result.isValid()) {
       String source = result.getSource();
       if ((source != null) && !source.isEmpty()) {
         buffer.append(indent);
