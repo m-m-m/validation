@@ -147,4 +147,20 @@ public interface Validator<V> extends Composable<Validator<?>> {
     return (Validator<T>) ValidatorNone.INSTANCE;
   }
 
+  /**
+   * @param validator the {@link Validator} to check. May be {@code null}.
+   * @return {@code true} if the given {@link Validator} is neither {@code null} nor {@link #none() none}, {@code false}
+   *         otherwise.
+   */
+  static boolean isValidating(Validator<?> validator) {
+
+    if (validator == null) {
+      return false;
+    }
+    if (validator == ValidatorNone.INSTANCE) {
+      return false;
+    }
+    return true;
+  }
+
 }
