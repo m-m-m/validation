@@ -7,7 +7,7 @@ package io.github.mmm.validation.string;
  *
  * @since 1.0.0
  */
-class StringHelper {
+final class StringHelper {
 
   static int indexOfUnescaped(String string, char c, int start) {
 

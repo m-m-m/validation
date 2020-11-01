@@ -2,8 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation.string;
 
-import java.net.IDN;
-
 import io.github.mmm.base.filter.CharFilter;
 import io.github.mmm.base.filter.ListCharFilter;
 import io.github.mmm.nls.NlsMessage;
@@ -66,19 +64,16 @@ public final class ValidatorHostName extends AbstractValueValidator<CharSequence
     if ((segments == null) || (segments.length == 0)) {
       return false;
     }
+    IdnEncoder encoder = new IdnEncoder();
     int length = segments.length - 1; // dots
     int i = 0;
     String segment = null;
     while (i < segments.length) {
       segment = segments[i++];
       if (!isValidSegment(segment)) {
-        String ascii = segment;
-        try {
-          ascii = IDN.toASCII(segment);
-        } catch (IllegalArgumentException e) {
-          return false;
-        }
-        if (ascii.equals(segment) || !isValidSegment(ascii)) {
+        String ascii = segment.replace("ß", "ss"); // proper stringprep (RFC 3454)?
+        ascii = encoder.encode(ascii);
+        if (segment.equals(ascii) || !isValidSegment(ascii)) {
           return false;
         }
       }
@@ -105,6 +100,9 @@ public final class ValidatorHostName extends AbstractValueValidator<CharSequence
 
   private static boolean isValidSegment(String segment) {
 
+    if (segment == null) {
+      return false;
+    }
     int length = segment.length();
     if ((length < 1) || (length > 63)) {
       return false;
