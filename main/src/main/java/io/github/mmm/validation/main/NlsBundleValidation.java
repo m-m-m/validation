@@ -185,4 +185,12 @@ public final class NlsBundleValidation extends NlsBundle {
     return create("errorNoIpAddress", "The value has to be a valid IP-address.");
   }
 
+  /**
+   * @param value is the value that is no valid URL.
+   * @return the {@link NlsMessage}
+   */
+  public NlsMessage errorNoUrl(Object value) {
+
+    return create("errorNoUrl", "The value has to be a valid URL.");
+  }
 }

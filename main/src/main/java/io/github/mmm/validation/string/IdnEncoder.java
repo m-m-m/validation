@@ -3,8 +3,7 @@
 package io.github.mmm.validation.string;
 
 /**
- * Partial implementation of punycode to {@link #encode(String) encode} IDN to ACE. It is stateful and therefore
- * <b>not</b> thread-safe.
+ * Partial implementation of punycode to encode IDN to ACE. It is stateful and therefore <b>not</b> thread-safe.
  */
 final class IdnEncoder {
 

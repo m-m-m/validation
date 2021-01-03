@@ -153,4 +153,14 @@ public abstract class CharSequenceValidatorBuilder<V extends CharSequence, PAREN
     return add(ValidatorIpAddress.get());
   }
 
+  /**
+   * Adds a {@link ValidatorUrl}.
+   *
+   * @return this build instance for fluent API calls.
+   */
+  public SELF url() {
+
+    return add(ValidatorUrl.get());
+  }
+
 }
