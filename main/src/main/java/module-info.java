@@ -17,6 +17,8 @@ module io.github.mmm.validation.main {
 
   exports io.github.mmm.validation.number;
 
+  exports io.github.mmm.validation.pattern;
+
   exports io.github.mmm.validation.range;
 
   exports io.github.mmm.validation.string;
