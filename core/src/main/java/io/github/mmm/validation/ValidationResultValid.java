@@ -65,6 +65,12 @@ public final class ValidationResultValid implements ValidationResult {
     return result;
   }
 
+  @Override
+  public String toString() {
+
+    return "Valid";
+  }
+
   /**
    * @return the singleton instance of this class.
    */
