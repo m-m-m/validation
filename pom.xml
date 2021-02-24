@@ -38,14 +38,14 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-nls-parent</artifactId>
-        <version>0.2.0</version>
+        <version>${project.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-value-parent</artifactId>
-        <version>0.2.0</version>
+        <version>${project.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
