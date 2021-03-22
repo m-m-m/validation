@@ -9,13 +9,14 @@
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
   <artifactId>mmm-validation-parent</artifactId>
-  <version>${revision}${changelist}</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
   <name>${project.artifactId}</name>
   <description>Simple but powerful validation.</description>
 
   <properties>
     <mmm.repository>validation</mmm.repository>
+    <revision>0-SNAPSHOT</revision>
   </properties>
 
   <modules>
