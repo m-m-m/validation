@@ -18,9 +18,14 @@ Maven Dependency:
 <dependency>
   <groupId>io.github.m-m-m</groupId>
   <artifactId>mmm-validation</artifactId>
-  <version>${mmm.validation.version}</version>
+  <!-- <version>${mmmVersion}</version> -->
 </dependency>
 ```
+Gradle Dependency:
+```
+implementation 'io.github.m-m-m:mmm-validation:${mmmVersion}'
+```
+For `${mmmVersion}` please fill in the latest version that you can find in the badge above.
 
 Module Dependency:
 
@@ -43,9 +48,14 @@ Maven Dependency:
 <dependency>
   <groupId>io.github.m-m-m</groupId>
   <artifactId>mmm-validation-main</artifactId>
-  <version>${mmm.validation.version}</version>
+  <!-- <version>${mmmVersion}</version> -->
 </dependency>
 ```
+Gradle Dependency:
+```
+implementation 'io.github.m-m-m:mmm-validation-main:${mmmVersion}'
+```
+For `${mmmVersion}` please fill in the latest version that you can find in the badge above.
 
 Module Dependency:
 
