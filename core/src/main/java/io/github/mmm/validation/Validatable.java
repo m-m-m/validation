@@ -18,4 +18,18 @@ public abstract interface Validatable {
    */
   ValidationResult validate();
 
+  /**
+   * Calls {@link #validate()} and throws an {@link ValidationFailedException} if this object is not
+   * {@link ValidationResult#isValid() valid}.
+   *
+   * @throws ValidationFailedException if the {@link #validate() validation} failed.
+   */
+  default void validateOrThrow() throws ValidationFailedException {
+
+    ValidationResult result = validate();
+    if (!result.isValid()) {
+      throw new ValidationFailedException(result);
+    }
+  }
+
 }
