@@ -15,50 +15,32 @@ import io.github.mmm.base.range.RangeType;
  */
 public class ComposedValidatorTest {
 
+  /** Test of {@link ComposedValidator}. */
   @Test
-  public void test() {
+  public void testComposedValidator() {
 
     // given
     Pattern regex = Pattern.compile("[a-zA-Z0-9-]*");
     // when
     ValidatorStringPattern pattern = new ValidatorStringPattern(regex);
-    ValidatorStringLength length1 = new ValidatorStringLength(0, 42);
+    ValidatorStringLength length1 = new ValidatorStringLength(0, 10);
     ValidatorStringLength length2 = new ValidatorStringLength(1, 43);
     ComposedValidator<String> composed = new ComposedValidator<>(Validator.none(), pattern, length1, length2);
     // then
     assertThat(composed.getChild(ValidatorStringPattern.class)).isSameAs(pattern);
     Integer min = composed.getMin();
-    assertThat(min).isEqualTo(0);
+    assertThat(min).isEqualTo(1);
     Integer max = composed.getMax();
-    assertThat(max).isEqualTo(43);
-  }
+    assertThat(max).isEqualTo(10);
 
-  private Validator<String> length(int min, int max) {
-
-    Validator<String> length = new AbstractValueValidator<String>() {
-      @Override
-      protected Localizable validateNotNull(String value) {
-
-        int len = value.length();
-        if ((len > min) || (len < max)) {
-          return Localizable.ofStatic("String length (" + len + ") has to be in the range from " + min + " to " + max);
-        }
-        return null;
-      }
-
-      @Override
-      public Integer getMin() {
-
-        return Integer.valueOf(min);
-      }
-
-      @Override
-      public Integer getMax() {
-
-        return Integer.valueOf(max);
-      }
-    };
-    return length;
+    ValidationResult result = composed.validate("0123456789ä");
+    assertThat(result.isValid()).isFalse();
+    assertThat(result).isInstanceOf(ComposedValidationFailure.class);
+    ComposedValidationFailure composedFailure = (ComposedValidationFailure) result;
+    assertThat(composedFailure.getChildCount()).isEqualTo(2);
+    assertThat(composedFailure.getChild(0).getMessage(false)).isEqualTo("Value does not match pattern " + regex);
+    assertThat(composedFailure.getChild(1).getMessage(false))
+        .isEqualTo("Length (11) has to be in the range " + length1.getRange());
   }
 
   @SuppressWarnings("unchecked")
@@ -76,24 +58,18 @@ public class ComposedValidatorTest {
     protected Localizable validateNotNull(String value) {
 
       int len = value.length();
-      if ((len > this.min.intValue()) || (len < this.max.intValue())) {
-        return Localizable
-            .ofStatic("String length (" + len + ") has to be in the range from " + this.min + " to " + this.max);
+      if (!this.range.contains(len)) {
+        return Localizable.ofStatic("Length (" + len + ") has to be in the range " + this.range);
       }
       return null;
     }
 
     @Override
-    public Integer getMin() {
+    public Range<Integer> getRange() {
 
-      return this.min;
+      return this.range;
     }
 
-    @Override
-    public Integer getMax() {
-
-      return this.max;
-    }
   }
 
   private static class ValidatorStringPattern extends AbstractValueValidator<String> {
