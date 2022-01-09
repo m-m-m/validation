@@ -17,7 +17,8 @@ import io.github.mmm.validation.main.NlsBundleValidation;
  *
  * @since 1.0.0
  */
-public abstract class ValidatorTemporalBefore<V> extends AbstractValueValidator<V> {
+@SuppressWarnings("rawtypes")
+public abstract class ValidatorTemporalBefore<V extends Comparable> extends AbstractValueValidator<V> {
 
   /** @see #getId() */
   public static final String ID = "Before";
@@ -84,8 +85,9 @@ public abstract class ValidatorTemporalBefore<V> extends AbstractValueValidator<
    */
   protected abstract boolean isBefore(V value, V limit);
 
+  @SuppressWarnings("unchecked")
   @Override
-  public Object getMax() {
+  public V getMax() {
 
     return this.bound;
   }

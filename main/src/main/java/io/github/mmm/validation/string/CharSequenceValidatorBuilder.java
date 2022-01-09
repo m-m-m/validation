@@ -74,7 +74,7 @@ public abstract class CharSequenceValidatorBuilder<V extends CharSequence, PAREN
   public SELF range(Integer min, Integer max) {
 
     if ((min != null) || (max != null)) {
-      add(new ValidatorCharSequnceSize(new NumberRangeType(min, max)));
+      add(new ValidatorCharSequnceSize(new NumberRangeType<>(min, max)));
     }
     return self();
   }

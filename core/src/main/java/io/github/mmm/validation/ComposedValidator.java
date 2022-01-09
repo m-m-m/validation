@@ -39,28 +39,4 @@ public class ComposedValidator<V> extends AbstractComposedValidator<V, V> {
     return validateChild(value, source2string(valueSource));
   }
 
-  @Override
-  public Object getMin() {
-
-    for (Validator<? super V> child : this.children) {
-      Object min = child.getMin();
-      if (min != null) {
-        return min;
-      }
-    }
-    return super.getMin();
-  }
-
-  @Override
-  public Object getMax() {
-
-    for (Validator<? super V> child : this.children) {
-      Object max = child.getMax();
-      if (max != null) {
-        return max;
-      }
-    }
-    return super.getMax();
-  }
-
 }

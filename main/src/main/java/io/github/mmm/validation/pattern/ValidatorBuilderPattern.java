@@ -36,7 +36,7 @@ public class ValidatorBuilderPattern<PARENT>
   public ValidatorBuilderPattern<PARENT> range(Integer min, Integer max) {
 
     if ((min != null) || (max != null)) {
-      add(new ValidatorPatternSize(new NumberRangeType(min, max)));
+      add(new ValidatorPatternSize(new NumberRangeType<>(min, max)));
     }
     return self();
   }

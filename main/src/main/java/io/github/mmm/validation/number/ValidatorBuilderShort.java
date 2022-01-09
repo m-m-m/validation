@@ -34,4 +34,10 @@ public class ValidatorBuilderShort<PARENT>
     return range(Short.valueOf(min), Short.valueOf(max));
   }
 
+  @Override
+  protected Short parse(String string) {
+
+    return Short.valueOf(string);
+  }
+
 }

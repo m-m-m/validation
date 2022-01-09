@@ -3,6 +3,7 @@
 package io.github.mmm.validation;
 
 import io.github.mmm.base.lang.Composable;
+import io.github.mmm.base.range.Range;
 import io.github.mmm.validation.impl.ValidatorNone;
 
 /**
@@ -84,19 +85,51 @@ public interface Validator<V> extends Composable<Validator<?>> {
   }
 
   /**
-   * @return the minimum allowed value. Typically of type {@literal <V>} but this can not be guaranteed.
+   * @param <T> type of the requested {@link Validator}.
+   * @param validatorClass the {@link Class} reflecting the requested {@link Validator}.
+   * @return the requested {@link Validator} or {@code null} if this validator is not of the given type and does not
+   *         contain any child (recursively) of the given type.
    */
-  default Object getMin() {
+  default <T> T getChild(Class<T> validatorClass) {
 
+    if (getClass().equals(validatorClass)) {
+      return validatorClass.cast(this);
+    }
     return null;
   }
 
   /**
-   * @return the maximum allowed value. Typically of type {@literal <V>} but this can not be guaranteed.
+   * @param <T> type of the {@link Range} value. Typically of type {@literal <V>} but e.g. for {@link String} or
+   *        {@link java.util.Collection} the type would be {@link Integer} to validate the size of the actual value.
+   * @return the {@link Range} constraint with an optional {@link #getMin() mimimum} and/or {@link #getMax() maximum}
+   *         value. Will be {@link Range#unbounded()} by if no bounds are validated.
    */
-  default Object getMax() {
+  @SuppressWarnings("rawtypes")
+  default <T extends Comparable> Range<T> getRange() {
 
-    return null;
+    return Range.unbounded();
+  }
+
+  /**
+   * @param <T> type of the minimum value. Typically of type {@literal <V>} but e.g. for {@link String} or
+   *        {@link java.util.Collection} the type would be {@link Integer} to validate the size of the actual value.
+   * @return the minimum allowed value.
+   */
+  @SuppressWarnings("rawtypes")
+  default <T extends Comparable> T getMin() {
+
+    return (T) getRange().getMin();
+  }
+
+  /**
+   * @param <T> type of the minimum value. Typically of type {@literal <V>} but e.g. for {@link String} or
+   *        {@link java.util.Collection} the type would be {@link Integer} to validate the size of the actual value.
+   * @return the maximum allowed value.
+   */
+  @SuppressWarnings("rawtypes")
+  default <T extends Comparable> T getMax() {
+
+    return (T) getRange().getMax();
   }
 
   /**

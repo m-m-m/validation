@@ -27,4 +27,10 @@ public class ValidatorBuilderBigDecimal<PARENT>
     super(parent);
   }
 
+  @Override
+  protected BigDecimal parse(String string) {
+
+    return new BigDecimal(string);
+  }
+
 }

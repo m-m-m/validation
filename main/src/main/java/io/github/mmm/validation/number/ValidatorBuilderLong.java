@@ -33,4 +33,10 @@ public class ValidatorBuilderLong<PARENT> extends NumberValidatorBuilder<Long, P
     return range(Long.valueOf(min), Long.valueOf(max));
   }
 
+  @Override
+  protected Long parse(String string) {
+
+    return Long.valueOf(string);
+  }
+
 }

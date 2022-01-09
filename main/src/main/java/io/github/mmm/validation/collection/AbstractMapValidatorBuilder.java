@@ -5,8 +5,8 @@ package io.github.mmm.validation.collection;
 import java.util.Map;
 import java.util.function.BiFunction;
 
-import io.github.mmm.base.range.RangeType;
 import io.github.mmm.base.range.Range;
+import io.github.mmm.base.range.RangeType;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.Validator;
 import io.github.mmm.validation.main.ContainerValidatorBuilder;
@@ -48,7 +48,7 @@ public abstract class AbstractMapValidatorBuilder<K, V, M extends Map<K, V>, PAR
    * @param range the {@link Range} to limit the {@link Map#size() size} of the {@link Map}.
    * @return this build instance for fluent API calls.
    */
-  public SELF size(Range<Number> range) {
+  public SELF size(Range<Integer> range) {
 
     return add(new ValidatorMapSize(range));
   }
@@ -62,7 +62,7 @@ public abstract class AbstractMapValidatorBuilder<K, V, M extends Map<K, V>, PAR
    */
   public SELF size(int min, int max) {
 
-    return size(new RangeType<>(Integer.valueOf(min), Integer.valueOf(max)));
+    return size(RangeType.of(Integer.valueOf(min), Integer.valueOf(max)));
   }
 
   /**

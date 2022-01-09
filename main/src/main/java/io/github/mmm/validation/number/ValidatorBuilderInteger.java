@@ -34,4 +34,10 @@ public class ValidatorBuilderInteger<PARENT>
     return range(Integer.valueOf(min), Integer.valueOf(max));
   }
 
+  @Override
+  protected Integer parse(String string) {
+
+    return Integer.valueOf(string);
+  }
+
 }

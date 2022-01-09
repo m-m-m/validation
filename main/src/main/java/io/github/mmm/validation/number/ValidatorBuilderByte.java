@@ -33,4 +33,10 @@ public class ValidatorBuilderByte<PARENT> extends NumberValidatorBuilder<Byte, P
     return range(Byte.valueOf(min), Byte.valueOf(max));
   }
 
+  @Override
+  protected Byte parse(String string) {
+
+    return Byte.valueOf(string);
+  }
+
 }

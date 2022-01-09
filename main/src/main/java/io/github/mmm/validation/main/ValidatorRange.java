@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation.main;
 
-import io.github.mmm.base.range.RangeType;
 import io.github.mmm.base.range.Range;
+import io.github.mmm.base.range.RangeType;
 
 /**
  * {@link io.github.mmm.validation.Validator} {@link #validate(Object, Object) validating} that a given value is within
@@ -13,7 +13,8 @@ import io.github.mmm.base.range.Range;
  *
  * @since 1.0.0
  */
-public class ValidatorRange<V> extends AbstractValidatorRange<V, V> {
+@SuppressWarnings({ "rawtypes", "unchecked" })
+public class ValidatorRange<V extends Comparable> extends AbstractValidatorRange<V, V> {
 
   /**
    * The constructor.
@@ -33,19 +34,7 @@ public class ValidatorRange<V> extends AbstractValidatorRange<V, V> {
    */
   public ValidatorRange(V min, V max) {
 
-    this(new RangeType<>(min, max));
-  }
-
-  @Override
-  public Object getMin() {
-
-    return this.range.getMin();
-  }
-
-  @Override
-  public Object getMax() {
-
-    return this.range.getMax();
+    this(RangeType.of(min, max));
   }
 
 }

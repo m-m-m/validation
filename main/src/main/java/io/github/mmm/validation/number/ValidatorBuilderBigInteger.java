@@ -24,4 +24,10 @@ public class ValidatorBuilderBigInteger<PARENT>
     super(parent);
   }
 
+  @Override
+  protected BigInteger parse(String string) {
+
+    return new BigInteger(string);
+  }
+
 }

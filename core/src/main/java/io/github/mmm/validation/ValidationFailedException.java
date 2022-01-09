@@ -7,6 +7,8 @@ import io.github.mmm.base.exception.ApplicationException;
  */
 public class ValidationFailedException extends ApplicationException {
 
+  private static final long serialVersionUID = 1L;
+
   private final ValidationResult result;
 
   /**

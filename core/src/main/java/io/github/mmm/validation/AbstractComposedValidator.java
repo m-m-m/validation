@@ -4,6 +4,8 @@ package io.github.mmm.validation;
 
 import java.util.Objects;
 
+import io.github.mmm.base.range.Range;
+
 /**
  * {@link Validator} that is composed out of a set of individual {@link #getChild(int) validators} given at
  * {@link #AbstractComposedValidator(Validator...) construction}. It will always invoke <em>all</em>
@@ -123,6 +125,37 @@ public abstract class AbstractComposedValidator<V, C> extends AbstractValidator<
       }
     }
     return false;
+  }
+
+  @Override
+  public <T> T getChild(Class<T> validatorClass) {
+
+    T validator = super.getChild(validatorClass);
+    if (validator == null) {
+      int childCount = getChildCount();
+      for (int i = 0; i < childCount; i++) {
+        Validator<? super C> child = getChild(i);
+        validator = child.getChild(validatorClass);
+        if (validator != null) {
+          break;
+        }
+      }
+    }
+    return validator;
+  }
+
+  @Override
+  @SuppressWarnings({ "rawtypes" })
+  public <T extends Comparable> Range<T> getRange() {
+
+    Range<T> range = Range.unbounded();
+    int childCount = getChildCount();
+    for (int i = 0; i < childCount; i++) {
+      Validator<? super C> child = getChild(i);
+      Range<T> range2 = child.getRange();
+      range = range.intersection(range2);
+    }
+    return range;
   }
 
   @Override

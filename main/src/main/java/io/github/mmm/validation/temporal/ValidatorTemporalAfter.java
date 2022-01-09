@@ -17,7 +17,8 @@ import io.github.mmm.validation.main.NlsBundleValidation;
  *
  * @since 1.0.0
  */
-public abstract class ValidatorTemporalAfter<V> extends AbstractValueValidator<V> {
+@SuppressWarnings("rawtypes")
+public abstract class ValidatorTemporalAfter<V extends Comparable> extends AbstractValueValidator<V> {
 
   /** @see #getId() */
   public static final String ID = "After";
@@ -86,8 +87,9 @@ public abstract class ValidatorTemporalAfter<V> extends AbstractValueValidator<V
    */
   protected abstract boolean isAfter(V value, V limit);
 
+  @SuppressWarnings("unchecked")
   @Override
-  public Object getMin() {
+  public V getMin() {
 
     return this.bound;
   }

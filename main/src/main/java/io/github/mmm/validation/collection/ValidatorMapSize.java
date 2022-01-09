@@ -14,14 +14,15 @@ import io.github.mmm.validation.main.AbstractValidatorRange;
  *
  * @since 1.0.0
  */
-public class ValidatorMapSize extends AbstractValidatorRange<Map<?, ?>, Number> {
+@SuppressWarnings("unchecked")
+public class ValidatorMapSize extends AbstractValidatorRange<Map<?, ?>, Integer> {
 
   /**
    * The constructor.
    *
-   * @param range is the {@link Range} the value has to be {@link Range#contains(Object) contained in}.
+   * @param range is the {@link Range} the value has to be {@link Range#contains(Comparable) contained in}.
    */
-  public ValidatorMapSize(Range<Number> range) {
+  public ValidatorMapSize(Range<Integer> range) {
 
     super(range);
   }
@@ -34,7 +35,7 @@ public class ValidatorMapSize extends AbstractValidatorRange<Map<?, ?>, Number> 
    */
   public ValidatorMapSize(int maxLength) {
 
-    this(new NumberRangeType(null, Integer.valueOf(maxLength)));
+    this(new NumberRangeType<>(null, Integer.valueOf(maxLength)));
   }
 
   @Override

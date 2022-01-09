@@ -15,14 +15,15 @@ import io.github.mmm.validation.main.AbstractValidatorRange;
  *
  * @since 1.0.0
  */
-public class ValidatorCharSequnceSize extends AbstractValidatorRange<CharSequence, Number> {
+@SuppressWarnings("unchecked")
+public class ValidatorCharSequnceSize extends AbstractValidatorRange<CharSequence, Integer> {
 
   /**
    * The constructor.
    *
-   * @param range is the {@link Range} the value has to be {@link Range#contains(Object) contained in}.
+   * @param range is the {@link Range} the value has to be {@link Range#contains(Comparable) contained in}.
    */
-  public ValidatorCharSequnceSize(Range<Number> range) {
+  public ValidatorCharSequnceSize(Range<Integer> range) {
 
     super(range);
   }
@@ -36,7 +37,7 @@ public class ValidatorCharSequnceSize extends AbstractValidatorRange<CharSequenc
    */
   public ValidatorCharSequnceSize(int maxLength) {
 
-    this(new NumberRangeType(null, Integer.valueOf(maxLength)));
+    this(new NumberRangeType<>(null, Integer.valueOf(maxLength)));
   }
 
   @Override

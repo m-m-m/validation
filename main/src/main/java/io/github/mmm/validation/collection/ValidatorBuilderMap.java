@@ -42,7 +42,7 @@ public class ValidatorBuilderMap<K, V, PARENT>
       if (max != null) {
         iMax = Integer.valueOf(max);
       }
-      add(new ValidatorMapSize(new RangeType<>(iMin, iMax)));
+      add(new ValidatorMapSize(RangeType.of(iMin, iMax)));
     }
     return self();
   }

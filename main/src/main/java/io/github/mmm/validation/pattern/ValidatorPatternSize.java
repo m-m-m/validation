@@ -16,14 +16,15 @@ import io.github.mmm.validation.main.AbstractValidatorRange;
  *
  * @since 1.0.0
  */
-public class ValidatorPatternSize extends AbstractValidatorRange<Pattern, Number> {
+@SuppressWarnings("unchecked")
+public class ValidatorPatternSize extends AbstractValidatorRange<Pattern, Integer> {
 
   /**
    * The constructor.
    *
-   * @param range is the {@link Range} the value has to be {@link Range#contains(Object) contained in}.
+   * @param range is the {@link Range} the value has to be {@link Range#contains(Comparable) contained in}.
    */
-  public ValidatorPatternSize(Range<Number> range) {
+  public ValidatorPatternSize(Range<Integer> range) {
 
     super(range);
   }
@@ -37,7 +38,7 @@ public class ValidatorPatternSize extends AbstractValidatorRange<Pattern, Number
    */
   public ValidatorPatternSize(int maxLength) {
 
-    this(new NumberRangeType(null, Integer.valueOf(maxLength)));
+    this(new NumberRangeType<>(null, Integer.valueOf(maxLength)));
   }
 
   @Override

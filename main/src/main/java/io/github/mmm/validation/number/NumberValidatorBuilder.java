@@ -17,7 +17,7 @@ import io.github.mmm.validation.main.ValidatorRange;
  * @since 1.0.0
  */
 @SuppressWarnings("rawtypes")
-public class NumberValidatorBuilder<V extends Number & Comparable, PARENT, SELF extends ComparableValidatorBuilder<V, PARENT, SELF>>
+public abstract class NumberValidatorBuilder<V extends Number & Comparable, PARENT, SELF extends ComparableValidatorBuilder<V, PARENT, SELF>>
     extends ComparableValidatorBuilder<V, PARENT, SELF> {
 
   /**
@@ -30,19 +30,25 @@ public class NumberValidatorBuilder<V extends Number & Comparable, PARENT, SELF 
     super(parent);
   }
 
+  /**
+   * @param string the {@link Number#toString() string representation} of the {@link Number} to parse.
+   * @return the parsed {@link Number}.
+   */
+  protected abstract V parse(String string);
+
   @Override
   public SELF range(String min, String max) {
 
     if ((min != null) || (max != null)) {
-      Double dMin = null;
+      V vMin = null;
       if (min != null) {
-        dMin = Double.valueOf(min);
+        vMin = parse(min);
       }
-      Double dMax = null;
+      V vMax = null;
       if (max != null) {
-        dMax = Double.valueOf(max);
+        vMax = parse(max);
       }
-      add(new ValidatorRange<>(new NumberRangeType(dMin, dMax)));
+      add(new ValidatorRange<>(new NumberRangeType<>(vMin, vMax)));
     }
     return self();
   }

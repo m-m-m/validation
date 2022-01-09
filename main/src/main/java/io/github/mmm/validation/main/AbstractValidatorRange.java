@@ -11,7 +11,7 @@ import io.github.mmm.validation.AbstractValueValidator;
 
 /**
  * {@link io.github.mmm.validation.Validator} {@link #validate(Object, Object) validating} that a given value
- * {@link Range#contains(Object) is contained} in a given {@link Range}.
+ * {@link Range#contains(Comparable) is contained} in a given {@link Range}.
  *
  * @param <V> the generic type of the value to {@link #validate(Object) validate}.
  * @param <R> the generic type of the {@link Range}-bounds.
@@ -19,7 +19,7 @@ import io.github.mmm.validation.AbstractValueValidator;
  * @since 1.0.0
  */
 @SuppressWarnings("rawtypes")
-public class AbstractValidatorRange<V, R> extends AbstractValueValidator<V> {
+public class AbstractValidatorRange<V, R extends Comparable> extends AbstractValueValidator<V> {
 
   /** @see #getId() */
   public static final String ID = "Range";
@@ -30,7 +30,7 @@ public class AbstractValidatorRange<V, R> extends AbstractValueValidator<V> {
   /**
    * The constructor.
    *
-   * @param range is the {@link Range} the value has to be {@link Range#contains(Object) contained in}.
+   * @param range is the {@link Range} the value has to be {@link Range#contains(Comparable) contained in}.
    */
   public AbstractValidatorRange(Range<R> range) {
 
@@ -47,9 +47,25 @@ public class AbstractValidatorRange<V, R> extends AbstractValueValidator<V> {
   /**
    * @return the {@link Range} to validate.
    */
+  @Override
+  @SuppressWarnings("unchecked")
   public Range<R> getRange() {
 
     return this.range;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public R getMin() {
+
+    return this.range.getMin();
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public R getMax() {
+
+    return this.range.getMax();
   }
 
   /**

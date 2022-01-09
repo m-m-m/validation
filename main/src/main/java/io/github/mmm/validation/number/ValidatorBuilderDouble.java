@@ -34,4 +34,10 @@ public class ValidatorBuilderDouble<PARENT>
     return range(Double.valueOf(min), Double.valueOf(max));
   }
 
+  @Override
+  protected Double parse(String string) {
+
+    return Double.valueOf(string);
+  }
+
 }

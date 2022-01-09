@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.validation.main;
 
-import io.github.mmm.base.range.RangeType;
 import io.github.mmm.base.range.Range;
+import io.github.mmm.base.range.RangeType;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.collection.ValidatorCollectionSize;
 
@@ -51,7 +51,7 @@ public abstract class ComparableValidatorBuilder<V extends Comparable, PARENT, S
   public SELF range(V min, V max) {
 
     if ((min != null) || (max != null)) {
-      range(new RangeType<>(min, max));
+      range(RangeType.of(min, max));
     }
     return self();
   }

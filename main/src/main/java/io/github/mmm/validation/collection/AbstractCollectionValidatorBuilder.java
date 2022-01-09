@@ -5,8 +5,8 @@ package io.github.mmm.validation.collection;
 import java.util.Collection;
 import java.util.function.BiFunction;
 
-import io.github.mmm.base.range.RangeType;
 import io.github.mmm.base.range.Range;
+import io.github.mmm.base.range.RangeType;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.Validator;
 import io.github.mmm.validation.main.ContainerValidatorBuilder;
@@ -44,7 +44,7 @@ public abstract class AbstractCollectionValidatorBuilder<E, V extends Collection
    * @param range the {@link Range} to limit the {@link Collection#size() size} of the {@link Collection}.
    * @return this build instance for fluent API calls.
    */
-  public SELF size(Range<Number> range) {
+  public SELF size(Range<Integer> range) {
 
     return add(new ValidatorCollectionSize(range));
   }
@@ -58,7 +58,7 @@ public abstract class AbstractCollectionValidatorBuilder<E, V extends Collection
    */
   public SELF size(int min, int max) {
 
-    return size(new RangeType<>(Integer.valueOf(min), Integer.valueOf(max)));
+    return size(RangeType.of(Integer.valueOf(min), Integer.valueOf(max)));
   }
 
   /**
@@ -84,7 +84,7 @@ public abstract class AbstractCollectionValidatorBuilder<E, V extends Collection
       if (max != null) {
         iMax = Integer.valueOf(max);
       }
-      add(new ValidatorCollectionSize(new RangeType<>(iMin, iMax)));
+      add(new ValidatorCollectionSize(RangeType.of(iMin, iMax)));
     }
     return self();
   }

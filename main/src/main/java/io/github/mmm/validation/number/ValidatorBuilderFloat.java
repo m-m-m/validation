@@ -34,4 +34,10 @@ public class ValidatorBuilderFloat<PARENT>
     return range(Float.valueOf(min), Float.valueOf(max));
   }
 
+  @Override
+  protected Float parse(String string) {
+
+    return Float.valueOf(string);
+  }
+
 }

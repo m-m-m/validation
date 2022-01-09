@@ -14,14 +14,15 @@ import io.github.mmm.validation.main.AbstractValidatorRange;
  *
  * @since 1.0.0
  */
-public class ValidatorCollectionSize extends AbstractValidatorRange<Collection<?>, Number> {
+@SuppressWarnings("unchecked")
+public class ValidatorCollectionSize extends AbstractValidatorRange<Collection<?>, Integer> {
 
   /**
    * The constructor.
    *
-   * @param range is the {@link Range} the value has to be {@link Range#contains(Object) contained in}.
+   * @param range is the {@link Range} the value has to be {@link Range#contains(Comparable) contained in}.
    */
-  public ValidatorCollectionSize(Range<Number> range) {
+  public ValidatorCollectionSize(Range<Integer> range) {
 
     super(range);
   }
@@ -35,7 +36,7 @@ public class ValidatorCollectionSize extends AbstractValidatorRange<Collection<?
    */
   public ValidatorCollectionSize(int maxLength) {
 
-    this(new NumberRangeType(null, Integer.valueOf(maxLength)));
+    this(new NumberRangeType<>(null, Integer.valueOf(maxLength)));
   }
 
   @Override
