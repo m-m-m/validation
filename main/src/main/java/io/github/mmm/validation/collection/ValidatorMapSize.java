@@ -6,7 +6,7 @@ import java.util.Map;
 
 import io.github.mmm.base.range.NumberRangeType;
 import io.github.mmm.base.range.Range;
-import io.github.mmm.validation.main.AbstractValidatorRange;
+import io.github.mmm.validation.main.AbstractValidatorSize;
 
 /**
  * {@link io.github.mmm.validation.Validator} {@link #validate(Map) validating} that the {@link Map#size() size} of a
@@ -15,7 +15,7 @@ import io.github.mmm.validation.main.AbstractValidatorRange;
  * @since 1.0.0
  */
 @SuppressWarnings("unchecked")
-public class ValidatorMapSize extends AbstractValidatorRange<Map<?, ?>, Integer> {
+public class ValidatorMapSize extends AbstractValidatorSize<Map<?, ?>> {
 
   /**
    * The constructor.
@@ -41,13 +41,10 @@ public class ValidatorMapSize extends AbstractValidatorRange<Map<?, ?>, Integer>
   @Override
   protected Integer convertValue(Map<?, ?> value) {
 
+    if (value == null) {
+      return Integer.valueOf(0);
+    }
     return Integer.valueOf(value.size());
-  }
-
-  @Override
-  protected boolean isLength() {
-
-    return true;
   }
 
 }

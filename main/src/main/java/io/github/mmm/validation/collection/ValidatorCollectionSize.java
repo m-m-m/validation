@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import io.github.mmm.base.range.NumberRangeType;
 import io.github.mmm.base.range.Range;
-import io.github.mmm.validation.main.AbstractValidatorRange;
+import io.github.mmm.validation.main.AbstractValidatorSize;
 
 /**
  * {@link io.github.mmm.validation.Validator} {@link #validate(Collection) validating} that the {@link Collection#size()
@@ -15,7 +15,7 @@ import io.github.mmm.validation.main.AbstractValidatorRange;
  * @since 1.0.0
  */
 @SuppressWarnings("unchecked")
-public class ValidatorCollectionSize extends AbstractValidatorRange<Collection<?>, Integer> {
+public class ValidatorCollectionSize extends AbstractValidatorSize<Collection<?>> {
 
   /**
    * The constructor.
@@ -42,13 +42,10 @@ public class ValidatorCollectionSize extends AbstractValidatorRange<Collection<?
   @Override
   protected Integer convertValue(Collection<?> value) {
 
+    if (value == null) {
+      return Integer.valueOf(0);
+    }
     return Integer.valueOf(value.size());
-  }
-
-  @Override
-  protected boolean isLength() {
-
-    return true;
   }
 
 }

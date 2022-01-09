@@ -37,4 +37,10 @@ public class ValidatorRange<V extends Comparable> extends AbstractValidatorRange
     this(RangeType.of(min, max));
   }
 
+  @Override
+  protected final boolean isLength() {
+
+    return false;
+  }
+
 }

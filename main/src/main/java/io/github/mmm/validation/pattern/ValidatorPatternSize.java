@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import io.github.mmm.base.range.NumberRangeType;
 import io.github.mmm.base.range.Range;
-import io.github.mmm.validation.main.AbstractValidatorRange;
+import io.github.mmm.validation.main.AbstractValidatorSize;
 
 /**
  * {@link io.github.mmm.validation.Validator} {@link #validate(Pattern) validating} that the {@link String#length()
@@ -17,7 +17,7 @@ import io.github.mmm.validation.main.AbstractValidatorRange;
  * @since 1.0.0
  */
 @SuppressWarnings("unchecked")
-public class ValidatorPatternSize extends AbstractValidatorRange<Pattern, Integer> {
+public class ValidatorPatternSize extends AbstractValidatorSize<Pattern> {
 
   /**
    * The constructor.
@@ -48,12 +48,6 @@ public class ValidatorPatternSize extends AbstractValidatorRange<Pattern, Intege
       return Integer.valueOf(0);
     }
     return Integer.valueOf(value.pattern().length());
-  }
-
-  @Override
-  protected boolean isLength() {
-
-    return true;
   }
 
 }

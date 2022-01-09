@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import io.github.mmm.base.range.NumberRangeType;
 import io.github.mmm.base.range.Range;
-import io.github.mmm.validation.main.AbstractValidatorRange;
+import io.github.mmm.validation.main.AbstractValidatorSize;
 
 /**
  * {@link io.github.mmm.validation.Validator} {@link #validate(CharSequence) validating} that the
@@ -16,7 +16,7 @@ import io.github.mmm.validation.main.AbstractValidatorRange;
  * @since 1.0.0
  */
 @SuppressWarnings("unchecked")
-public class ValidatorCharSequnceSize extends AbstractValidatorRange<CharSequence, Integer> {
+public class ValidatorCharSequnceSize extends AbstractValidatorSize<CharSequence> {
 
   /**
    * The constructor.
@@ -44,12 +44,6 @@ public class ValidatorCharSequnceSize extends AbstractValidatorRange<CharSequenc
   protected Integer convertValue(CharSequence value) {
 
     return Integer.valueOf(value.length());
-  }
-
-  @Override
-  protected boolean isLength() {
-
-    return true;
   }
 
 }

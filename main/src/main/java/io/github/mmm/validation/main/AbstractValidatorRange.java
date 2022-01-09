@@ -19,7 +19,7 @@ import io.github.mmm.validation.AbstractValueValidator;
  * @since 1.0.0
  */
 @SuppressWarnings("rawtypes")
-public class AbstractValidatorRange<V, R extends Comparable> extends AbstractValueValidator<V> {
+public abstract class AbstractValidatorRange<V, R extends Comparable> extends AbstractValueValidator<V> {
 
   /** @see #getId() */
   public static final String ID = "Range";
@@ -115,12 +115,9 @@ public class AbstractValidatorRange<V, R extends Comparable> extends AbstractVal
   }
 
   /**
-   * @return {@code true} if validating the lenght of the value, {@code false} otherwise.
+   * @return {@code true} if validating the length or size of the value, {@code false} otherwise.
    */
-  protected boolean isLength() {
-
-    return false;
-  }
+  protected abstract boolean isLength();
 
   @Override
   public int hashCode() {
