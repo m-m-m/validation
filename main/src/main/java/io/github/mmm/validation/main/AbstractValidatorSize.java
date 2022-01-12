@@ -23,15 +23,15 @@ public abstract class AbstractValidatorSize<V> extends AbstractValidatorRange<V,
   public AbstractValidatorSize(Range<Integer> range) {
 
     super(range);
-    if (isNegative(range.getMin()) || isNegative(range.getMax())) {
+    if (isLess(range.getMin(), 0) || isLess(range.getMax(), 1)) {
       throw new IllegalArgumentException(range.toString());
     }
   }
 
-  private boolean isNegative(Integer bound) {
+  private boolean isLess(Integer bound, int min) {
 
     if (bound != null) {
-      if (bound.intValue() < 0) {
+      if (bound.intValue() < min) {
         return true;
       }
     }
