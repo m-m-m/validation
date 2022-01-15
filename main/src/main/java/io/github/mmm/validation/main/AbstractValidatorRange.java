@@ -18,8 +18,7 @@ import io.github.mmm.validation.AbstractValueValidator;
  *
  * @since 1.0.0
  */
-@SuppressWarnings("rawtypes")
-public abstract class AbstractValidatorRange<V, R extends Comparable> extends AbstractValueValidator<V> {
+public abstract class AbstractValidatorRange<V, R extends Comparable<?>> extends AbstractValueValidator<V> {
 
   /** @see #getId() */
   public static final String ID = "Range";
@@ -133,7 +132,7 @@ public abstract class AbstractValidatorRange<V, R extends Comparable> extends Ab
     } else if (!super.equals(obj)) {
       return false;
     }
-    AbstractValidatorRange other = (AbstractValidatorRange) obj;
+    AbstractValidatorRange<?, ?> other = (AbstractValidatorRange<?, ?>) obj;
     return Objects.equals(this.range, other.range);
   }
 

@@ -1,9 +1,10 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.validation.main;
+package io.github.mmm.validation.range;
 
 import io.github.mmm.base.range.Range;
 import io.github.mmm.base.range.RangeType;
+import io.github.mmm.validation.main.AbstractValidatorRange;
 
 /**
  * {@link io.github.mmm.validation.Validator} {@link #validate(Object, Object) validating} that a given value is within
@@ -13,8 +14,8 @@ import io.github.mmm.base.range.RangeType;
  *
  * @since 1.0.0
  */
-@SuppressWarnings({ "rawtypes", "unchecked" })
-public class ValidatorRange<V extends Comparable> extends AbstractValidatorRange<V, V> {
+@SuppressWarnings("unchecked")
+public class ValidatorRange<V extends Comparable<?>> extends AbstractValidatorRange<V, V> {
 
   /**
    * The constructor.

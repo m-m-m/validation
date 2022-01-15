@@ -104,8 +104,7 @@ public interface Validator<V> extends Composable<Validator<?>> {
    * @return the {@link Range} constraint with an optional {@link #getMin() mimimum} and/or {@link #getMax() maximum}
    *         value. Will be {@link Range#unbounded()} by if no bounds are validated.
    */
-  @SuppressWarnings("rawtypes")
-  default <T extends Comparable> Range<T> getRange() {
+  default <T extends Comparable<?>> Range<T> getRange() {
 
     return Range.unbounded();
   }
@@ -115,8 +114,8 @@ public interface Validator<V> extends Composable<Validator<?>> {
    *        {@link java.util.Collection} the type would be {@link Integer} to validate the size of the actual value.
    * @return the minimum allowed value.
    */
-  @SuppressWarnings("rawtypes")
-  default <T extends Comparable> T getMin() {
+  @SuppressWarnings("unchecked")
+  default <T extends Comparable<?>> T getMin() {
 
     return (T) getRange().getMin();
   }
@@ -126,8 +125,8 @@ public interface Validator<V> extends Composable<Validator<?>> {
    *        {@link java.util.Collection} the type would be {@link Integer} to validate the size of the actual value.
    * @return the maximum allowed value.
    */
-  @SuppressWarnings("rawtypes")
-  default <T extends Comparable> T getMax() {
+  @SuppressWarnings("unchecked")
+  default <T extends Comparable<?>> T getMax() {
 
     return (T) getRange().getMax();
   }

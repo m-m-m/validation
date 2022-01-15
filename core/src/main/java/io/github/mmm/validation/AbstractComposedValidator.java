@@ -145,8 +145,7 @@ public abstract class AbstractComposedValidator<V, C> extends AbstractValidator<
   }
 
   @Override
-  @SuppressWarnings({ "rawtypes" })
-  public <T extends Comparable> Range<T> getRange() {
+  public <T extends Comparable<?>> Range<T> getRange() {
 
     Range<T> range = Range.unbounded();
     int childCount = getChildCount();

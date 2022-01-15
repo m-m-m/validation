@@ -5,7 +5,7 @@ package io.github.mmm.validation.number;
 import io.github.mmm.base.range.NumberRangeType;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.main.ComparableValidatorBuilder;
-import io.github.mmm.validation.main.ValidatorRange;
+import io.github.mmm.validation.range.ValidatorRange;
 
 /**
  * {@link ComparableValidatorBuilder Validator builder} for {@link Number} values.
@@ -16,8 +16,7 @@ import io.github.mmm.validation.main.ValidatorRange;
  *
  * @since 1.0.0
  */
-@SuppressWarnings("rawtypes")
-public abstract class NumberValidatorBuilder<V extends Number & Comparable, PARENT, SELF extends ComparableValidatorBuilder<V, PARENT, SELF>>
+public abstract class NumberValidatorBuilder<V extends Number & Comparable<?>, PARENT, SELF extends ComparableValidatorBuilder<V, PARENT, SELF>>
     extends ComparableValidatorBuilder<V, PARENT, SELF> {
 
   /**

@@ -17,8 +17,7 @@ import io.github.mmm.validation.main.ObjectValidatorBuilder;
  *
  * @since 1.0.0
  */
-@SuppressWarnings("rawtypes")
-public abstract class ValidatorBuilderTemporal<V extends Comparable, PARENT, SELF extends ValidatorBuilderTemporal<V, PARENT, SELF>>
+public abstract class ValidatorBuilderTemporal<V extends Comparable<?>, PARENT, SELF extends ValidatorBuilderTemporal<V, PARENT, SELF>>
     extends ComparableValidatorBuilder<V, PARENT, SELF> {
 
   /**

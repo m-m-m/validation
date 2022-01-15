@@ -17,8 +17,7 @@ import io.github.mmm.validation.main.NlsBundleValidation;
  *
  * @since 1.0.0
  */
-@SuppressWarnings("rawtypes")
-public abstract class ValidatorTemporalAfter<V extends Comparable> extends AbstractValueValidator<V> {
+public abstract class ValidatorTemporalAfter<V extends Comparable<?>> extends AbstractValueValidator<V> {
 
   /** @see #getId() */
   public static final String ID = "After";

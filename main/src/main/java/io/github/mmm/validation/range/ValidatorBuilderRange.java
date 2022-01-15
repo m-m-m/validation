@@ -14,8 +14,7 @@ import io.github.mmm.validation.string.CharSequenceValidatorBuilder;
  *
  * @since 1.0.0
  */
-@SuppressWarnings("rawtypes")
-public class ValidatorBuilderRange<V extends Comparable, PARENT>
+public class ValidatorBuilderRange<V extends Comparable<?>, PARENT>
     extends ObjectValidatorBuilder<Range<V>, PARENT, ValidatorBuilderRange<V, PARENT>> {
 
   /**

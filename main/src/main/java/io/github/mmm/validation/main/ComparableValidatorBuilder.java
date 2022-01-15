@@ -6,6 +6,7 @@ import io.github.mmm.base.range.Range;
 import io.github.mmm.base.range.RangeType;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.collection.ValidatorCollectionSize;
+import io.github.mmm.validation.range.ValidatorRange;
 
 /**
  * The {@link ObjectValidatorBuilder builder} of {@link AbstractValidator} for {@link Comparable} values.
@@ -16,8 +17,7 @@ import io.github.mmm.validation.collection.ValidatorCollectionSize;
  *
  * @since 1.0.0
  */
-@SuppressWarnings("rawtypes")
-public abstract class ComparableValidatorBuilder<V extends Comparable, PARENT, SELF extends ComparableValidatorBuilder<V, PARENT, SELF>>
+public abstract class ComparableValidatorBuilder<V extends Comparable<?>, PARENT, SELF extends ComparableValidatorBuilder<V, PARENT, SELF>>
     extends ObjectValidatorBuilder<V, PARENT, SELF> {
 
   /**
