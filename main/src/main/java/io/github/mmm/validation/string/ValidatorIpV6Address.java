@@ -75,7 +75,7 @@ public final class ValidatorIpV6Address extends AbstractValueValidator<CharSeque
         } else if (colonCount > 2) {
           return false;
         }
-      } else if (CharFilter.HEX_DIGIT_FILTER.accept(c)) {
+      } else if (CharFilter.HEX_DIGIT.accept(c)) {
         colonCount = 0;
         digitCount++;
         if (digitCount > 4) {

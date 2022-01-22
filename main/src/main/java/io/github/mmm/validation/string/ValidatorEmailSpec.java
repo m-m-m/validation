@@ -24,7 +24,7 @@ public final class ValidatorEmailSpec extends AbstractValueValidator<CharSequenc
   static final ListCharFilter ATEXT_SEPCIAL_CHAR_FILTER = new ListCharFilter('!', '#', '$', '%', '&', '\'', '*', '+',
       '-', '/', '=', '?', '^', '_', '`', '{', '|', '}', '~');
 
-  static final CharFilter ATEXT_FILTER = CharFilter.LATIN_DIGIT_OR_LETTER_FILTER
+  static final CharFilter ATEXT_FILTER = CharFilter.LATIN_LETTER_OR_DIGIT
       .compose(ATEXT_SEPCIAL_CHAR_FILTER.compose(SPECIAL_CHAR_FILTER));
 
   static final CharFilter LOCAL_PART_FILTER = ATEXT_FILTER.compose(SPECIAL_CHAR_FILTER);

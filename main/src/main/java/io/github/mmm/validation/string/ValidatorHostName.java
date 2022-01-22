@@ -92,7 +92,7 @@ public final class ValidatorHostName extends AbstractValueValidator<CharSequence
 
     // actually length must be 2+ ?!?
     char first = segment.charAt(0);
-    if (!CharFilter.ASCII_LETTER_FILTER.accept(first)) {
+    if (!CharFilter.LATIN_LETTER.accept(first)) {
       return false; // first char of tld has to be letter.
     }
     return true;
@@ -110,7 +110,7 @@ public final class ValidatorHostName extends AbstractValueValidator<CharSequence
     int last = length - 1;
     for (int i = 0; i < length; i++) {
       char c = segment.charAt(i);
-      if (!CharFilter.LATIN_DIGIT_OR_LETTER_FILTER.accept(c)) {
+      if (!CharFilter.LATIN_LETTER_OR_DIGIT.accept(c)) {
         if (i == 0) {
           return false; // must start with letter or digit (IDN segment starts with "xn--")
         }
