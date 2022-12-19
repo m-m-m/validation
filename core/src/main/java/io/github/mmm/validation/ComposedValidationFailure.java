@@ -97,7 +97,10 @@ public class ComposedValidationFailure extends AbstractValidationResult {
   @Override
   public ValidationResult getChild(int index) {
 
-    return this.failures[index];
+    if ((index >= 0) && (index < this.failures.length)) {
+      return this.failures[index];
+    }
+    return null;
   }
 
   @Override

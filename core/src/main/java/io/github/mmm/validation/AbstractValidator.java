@@ -45,6 +45,18 @@ public abstract class AbstractValidator<V> implements Validator<V> {
     return false;
   }
 
+  @Override
+  public int getChildCount() {
+
+    return 0;
+  }
+
+  @Override
+  public Validator<?> getChild(int index) {
+
+    return null;
+  }
+
   /**
    * @param source the {@link #validate(Object, Object) value source}.
    * @return the {@link Object#toString() string representation} of the given {@code source}.

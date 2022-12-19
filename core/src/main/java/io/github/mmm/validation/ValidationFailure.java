@@ -42,6 +42,18 @@ public class ValidationFailure extends AbstractValidationResult {
   }
 
   @Override
+  public int getChildCount() {
+
+    return 0;
+  }
+
+  @Override
+  public ValidationResult getChild(int index) {
+
+    return null;
+  }
+
+  @Override
   public String getMessage() {
 
     return this.message.getMessage();

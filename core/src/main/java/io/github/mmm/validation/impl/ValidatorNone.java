@@ -28,6 +28,18 @@ public final class ValidatorNone extends AbstractValidator<Object> {
   }
 
   @Override
+  public int getChildCount() {
+
+    return 0;
+  }
+
+  @Override
+  public Validator<?> getChild(int index) {
+
+    return null;
+  }
+
+  @Override
   public ValidationResult validate(Object value, Object valueSource) {
 
     return ValidationResultValid.get();

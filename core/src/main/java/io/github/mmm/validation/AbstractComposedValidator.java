@@ -69,7 +69,10 @@ public abstract class AbstractComposedValidator<V, C> extends AbstractValidator<
   @Override
   public Validator<? super C> getChild(int index) {
 
-    return this.children[index];
+    if ((index >= 0) && (index < this.children.length)) {
+      return this.children[index];
+    }
+    return null;
   }
 
   @Override

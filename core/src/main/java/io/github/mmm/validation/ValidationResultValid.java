@@ -25,6 +25,18 @@ public final class ValidationResultValid implements ValidationResult {
   }
 
   @Override
+  public int getChildCount() {
+
+    return 0;
+  }
+
+  @Override
+  public ValidationResult getChild(int index) {
+
+    return null;
+  }
+
+  @Override
   public String getSource() {
 
     return null;
