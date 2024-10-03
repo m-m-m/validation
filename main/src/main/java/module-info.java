@@ -23,19 +23,25 @@ module io.github.mmm.validation.main {
 
   exports io.github.mmm.validation.string;
 
-  exports io.github.mmm.validation.temporal;
+  exports io.github.mmm.validation.time;
 
-  exports io.github.mmm.validation.temporal.instant;
+  exports io.github.mmm.validation.time.dayofweek;
 
-  exports io.github.mmm.validation.temporal.localdate;
+  exports io.github.mmm.validation.time.instant;
 
-  exports io.github.mmm.validation.temporal.localdatetime;
+  exports io.github.mmm.validation.time.localdate;
 
-  exports io.github.mmm.validation.temporal.localtime;
+  exports io.github.mmm.validation.time.localdatetime;
 
-  exports io.github.mmm.validation.temporal.offsetdatetime;
+  exports io.github.mmm.validation.time.localtime;
 
-  exports io.github.mmm.validation.temporal.offsettime;
+  exports io.github.mmm.validation.time.month;
 
-  exports io.github.mmm.validation.temporal.zoneddatetime;
+  exports io.github.mmm.validation.time.offsetdatetime;
+
+  exports io.github.mmm.validation.time.offsettime;
+
+  exports io.github.mmm.validation.time.year;
+
+  exports io.github.mmm.validation.time.zoneddatetime;
 }

@@ -5,7 +5,6 @@ package io.github.mmm.validation.number;
 import io.github.mmm.base.range.NumberRangeType;
 import io.github.mmm.validation.AbstractValidator;
 import io.github.mmm.validation.main.ComparableValidatorBuilder;
-import io.github.mmm.validation.range.ValidatorRange;
 
 /**
  * {@link ComparableValidatorBuilder Validator builder} for {@link Number} values.
@@ -29,25 +28,26 @@ public abstract class NumberValidatorBuilder<V extends Number & Comparable<?>, P
     super(parent);
   }
 
-  /**
-   * @param string the {@link Number#toString() string representation} of the {@link Number} to parse.
-   * @return the parsed {@link Number}.
-   */
-  protected abstract V parse(String string);
-
   @Override
   public SELF range(String min, String max) {
 
+    V vMin = null;
+    if (min != null) {
+      vMin = parse(min);
+    }
+    V vMax = null;
+    if (max != null) {
+      vMax = parse(max);
+    }
+    range(vMin, vMax);
+    return self();
+  }
+
+  @Override
+  public SELF range(V min, V max) {
+
     if ((min != null) || (max != null)) {
-      V vMin = null;
-      if (min != null) {
-        vMin = parse(min);
-      }
-      V vMax = null;
-      if (max != null) {
-        vMax = parse(max);
-      }
-      add(new ValidatorRange<>(new NumberRangeType<>(vMin, vMax)));
+      return range(new NumberRangeType<>(min, max));
     }
     return self();
   }

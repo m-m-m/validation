@@ -31,6 +31,12 @@ public abstract class ComparableValidatorBuilder<V extends Comparable<?>, PARENT
   }
 
   /**
+   * @param value the value as {@link String}.
+   * @return the parsed value.
+   */
+  protected abstract V parse(String value);
+
+  /**
    * @see ValidatorCollectionSize
    *
    * @param range the {@link Range} to limit the value (or its size).
@@ -54,6 +60,20 @@ public abstract class ComparableValidatorBuilder<V extends Comparable<?>, PARENT
       range(RangeType.of(min, max));
     }
     return self();
+  }
+
+  @Override
+  public SELF range(String min, String max) {
+
+    V minimum = null;
+    if (min != null) {
+      minimum = parse(min);
+    }
+    V maximum = null;
+    if (max != null) {
+      maximum = parse(max);
+    }
+    return range(minimum, maximum);
   }
 
 }
