@@ -21,8 +21,7 @@ public final class ValidatorEmailSpec extends AbstractValueValidator<CharSequenc
 
   static final CharFilter SPECIAL_CHAR_FILTER = c -> (c >= '\u0080') && (c <= '\uFFFF');
 
-  static final ListCharFilter ATEXT_SEPCIAL_CHAR_FILTER = new ListCharFilter('!', '#', '$', '%', '&', '\'', '*', '+',
-      '-', '/', '=', '?', '^', '_', '`', '{', '|', '}', '~');
+  static final ListCharFilter ATEXT_SEPCIAL_CHAR_FILTER = new ListCharFilter("!#$%&\'*+-/=?^_`{|}~");
 
   static final CharFilter ATEXT_FILTER = CharFilter.LATIN_LETTER_OR_DIGIT
       .compose(ATEXT_SEPCIAL_CHAR_FILTER.compose(SPECIAL_CHAR_FILTER));

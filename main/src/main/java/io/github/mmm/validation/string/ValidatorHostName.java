@@ -21,8 +21,7 @@ public final class ValidatorHostName extends AbstractValueValidator<CharSequence
 
   // RFC-5892 Sec. 2.3, etc. even though characters such as hash ('#') are not explicitly forbidden, they are still not
   // allowed as part
-  static final CharFilter EXTRA_ASCII_FILTER = new ListCharFilter('!', '"', '$', '\'', '(', ')', '*', ',', '-', '@',
-      '[', '\\', ']', '_', '`', '{', '}');
+  static final CharFilter EXTRA_ASCII_FILTER = new ListCharFilter("!\"$'()*,-@[\\]_`{}");
 
   // static final CharFilter SEGMENT_FILTER = CharFilter.LATIN_DIGIT_OR_LETTER_FILTER
   // .compose(new ListCharFilter(charArray));
