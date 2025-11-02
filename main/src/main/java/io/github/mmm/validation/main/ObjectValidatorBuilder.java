@@ -143,7 +143,7 @@ public abstract class ObjectValidatorBuilder<V, PARENT, SELF extends ObjectValid
       return this.validators.get(0);
     } else {
       AbstractValidator<? super V>[] array = this.validators.toArray(new AbstractValidator[size]);
-      return new ComposedValidator<>(array);
+      return new ComposedValidator(array);
     }
   }
 
