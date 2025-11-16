@@ -31,19 +31,13 @@ public abstract class AbstractValidationResult implements ValidationResult {
   }
 
   @Override
-  public final boolean isValid() {
-
-    return false;
-  }
-
-  @Override
-  public String getSource() {
+  public final String getSource() {
 
     return this.source;
   }
 
   @Override
-  public String getCode() {
+  public final String getCode() {
 
     return this.code;
   }

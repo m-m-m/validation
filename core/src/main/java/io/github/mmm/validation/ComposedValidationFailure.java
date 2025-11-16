@@ -61,6 +61,12 @@ public class ComposedValidationFailure extends AbstractValidationResult {
     this.failures = failures;
   }
 
+  @Override
+  public final boolean isValid() {
+
+    return false;
+  }
+
   /**
    * @return {@code true} to append the {@link #getSource() source}s of the {@link ValidationFailure}s to the
    *         {@link #getMessage() message}, {@code false} otherwise.
