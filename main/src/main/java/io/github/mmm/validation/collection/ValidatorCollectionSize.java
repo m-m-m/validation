@@ -9,8 +9,8 @@ import io.github.mmm.base.range.Range;
 import io.github.mmm.validation.main.AbstractValidatorSize;
 
 /**
- * {@link io.github.mmm.validation.Validator} {@link #validate(Collection) validating} that the {@link Collection#size()
- * size} of a given {@link Collection} is within a {@link #ValidatorCollectionSize(Range) predefined} {@link Range}.
+ * {@link io.github.mmm.validation.Validator#validate(Object) Validating} that the {@link Collection#size() size} of a
+ * given {@link Collection} is within a {@link #ValidatorCollectionSize(Range) predefined} {@link Range}.
  *
  * @since 1.0.0
  */

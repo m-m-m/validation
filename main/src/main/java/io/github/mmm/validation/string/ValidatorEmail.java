@@ -7,8 +7,8 @@ import io.github.mmm.validation.AbstractValueValidator;
 import io.github.mmm.validation.main.NlsBundleValidation;
 
 /**
- * {@link io.github.mmm.validation.Validator} {@link #validate(CharSequence, Object) validating} that a given
- * {@link CharSequence} is a valid email address (RFC822).
+ * {@link io.github.mmm.validation.Validator#validate(Object) Validating} that a given {@link CharSequence} is a valid
+ * email address (RFC822).
  *
  * @since 1.0.0
  */

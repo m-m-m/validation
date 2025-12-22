@@ -10,8 +10,8 @@ import io.github.mmm.validation.AbstractValueValidator;
 import io.github.mmm.validation.main.NlsBundleValidation;
 
 /**
- * {@link io.github.mmm.validation.Validator} {@link #validate(CharSequence, Object) validating} that a given
- * {@link CharSequence} {@link Pattern#matcher(CharSequence) matches} a given {@link Pattern}.
+ * {@link io.github.mmm.validation.Validator#validate(Object) Validating} that a given {@link CharSequence}
+ * {@link Pattern#matcher(CharSequence) matches} a given {@link Pattern}.
  *
  * @since 1.0.0
  */

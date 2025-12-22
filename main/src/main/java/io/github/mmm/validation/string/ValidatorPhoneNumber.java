@@ -9,8 +9,8 @@ import io.github.mmm.validation.AbstractValueValidator;
 import io.github.mmm.validation.main.NlsBundleValidation;
 
 /**
- * {@link io.github.mmm.validation.Validator} {@link #validate(CharSequence, Object) validating} that a given
- * {@link CharSequence} is a valid email address.
+ * {@link io.github.mmm.validation.Validator#validate(Object) Validating} that a given {@link CharSequence} is a valid
+ * phone number.
  *
  * @since 1.0.0
  */

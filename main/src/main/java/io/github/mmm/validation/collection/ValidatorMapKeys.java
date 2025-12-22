@@ -13,8 +13,8 @@ import io.github.mmm.validation.ValidationResultValid;
 import io.github.mmm.validation.Validator;
 
 /**
- * {@link io.github.mmm.validation.Validator} {@link #validate(Map, Object) validating} {@link Map#keySet() all keys} of
- * a given {@link Map} using the {@link #ValidatorMapKeys(AbstractValidator...) given} validators.
+ * {@link io.github.mmm.validation.Validator#validate(Object) Validating} {@link Map#keySet() all keys} of a given
+ * {@link Map} using the {@link #ValidatorMapKeys(AbstractValidator...) given} validators.
  *
  * @param <K> the generic type of the {@link Map#keySet() keys} in the collection.
  *

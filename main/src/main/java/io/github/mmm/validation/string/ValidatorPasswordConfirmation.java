@@ -4,7 +4,6 @@ package io.github.mmm.validation.string;
 
 import java.util.Objects;
 import java.util.function.Supplier;
-import java.util.regex.Pattern;
 
 import io.github.mmm.base.i18n.Localizable;
 import io.github.mmm.nls.NlsMessage;
@@ -12,8 +11,8 @@ import io.github.mmm.validation.AbstractValueValidator;
 import io.github.mmm.validation.main.NlsBundleValidation;
 
 /**
- * {@link io.github.mmm.validation.Validator} {@link #validate(CharSequence, Object) validating} that a given
- * {@link CharSequence} {@link Pattern#matcher(CharSequence) matches} a given {@link Pattern}.
+ * {@link io.github.mmm.validation.Validator#validate(Object) Validating} that a given {@link CharSequence} equals the
+ * value from the {@link Supplier} given at construction in order to verify a password confirmation.
  *
  * @since 1.0.0
  */

@@ -10,9 +10,8 @@ import io.github.mmm.base.range.Range;
 import io.github.mmm.validation.main.AbstractValidatorSize;
 
 /**
- * {@link io.github.mmm.validation.Validator} {@link #validate(Pattern) validating} that the {@link String#length()
- * length} of a given {@link Pattern#pattern() pattern} is within a {@link #ValidatorPatternSize(Range) predefined}
- * {@link Range}.
+ * {@link io.github.mmm.validation.Validator#validate(Object) Validating} that the {@link String#length() length} of a
+ * given {@link Pattern#pattern() pattern} is within a {@link #ValidatorPatternSize(Range) predefined} {@link Range}.
  *
  * @since 1.0.0
  */
