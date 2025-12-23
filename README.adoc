@@ -6,7 +6,7 @@ image:https://github.com/m-m-m/validation/actions/workflows/build.yml/badge.svg[
 = mmm-validation
 
 image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-validation.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m]
-image:https://javadoc.io/badge2/io.github.m-m-m/mmm-validation/javadoc.svg["base JavaDoc", link=https://javadoc.io/doc/io.github.m-m-m/mmm-validation]
+image:https://javadoc.io/badge2/io.github.m-m-m/mmm-validation/javadoc.svg["JavaDoc",link=https://javadoc.io/doc/io.github.m-m-m/mmm-validation]
 
 The module `io.github.mmm.validation` (artifactId `mmm-validation`) provides a simple but powerful API for validation.
 
@@ -36,7 +36,7 @@ Module Dependency:
 = mmm-validation-main
 
 image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-validation-main.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m]
-image:https://javadoc.io/badge2/io.github.m-m-m/mmm-validation-main/javadoc.svg["base JavaDoc", link=https://javadoc.io/doc/io.github.m-m-m/mmm-validation-main]
+image:https://javadoc.io/badge2/io.github.m-m-m/mmm-validation-main/javadoc.svg["JavaDoc",link=https://javadoc.io/doc/io.github.m-m-m/mmm-validation-main]
 
 The module `io.github.mmm.validation.main` (artifactId `mmm-validation-main`) provides implementations of validators and validator builders for all kind of standard datatypes.
 
