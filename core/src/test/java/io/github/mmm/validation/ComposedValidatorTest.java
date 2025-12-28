@@ -21,14 +21,14 @@ public class ComposedValidatorTest {
   @Test
   public void testComposedValidator() {
 
-    // given
+    // arrange
     Pattern regex = Pattern.compile("[a-zA-Z0-9-]*");
-    // when
+    // act
     ValidatorStringPattern pattern = new ValidatorStringPattern(regex);
     ValidatorStringLength length1 = new ValidatorStringLength(0, 10);
     ValidatorStringLength length2 = new ValidatorStringLength(1, 43);
     ComposedValidator<String> composed = new ComposedValidator<>(Validator.none(), pattern, length1, length2);
-    // then
+    // assert
     assertThat(composed.getChild(ValidatorStringPattern.class)).isSameAs(pattern);
     Integer min = composed.getMin();
     assertThat(min).isEqualTo(1);
