@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
  * Test of {@link IdnEncoder}.
  */
 @SuppressWarnings("javadoc")
-public class IdnEncoderTest extends Assertions {
+class IdnEncoderTest extends Assertions {
 
   /** Test of {@link IdnEncoder#encode(String)}. */
   @Test
-  public void testIdn() {
+  void testIdn() {
 
     IdnEncoder encoder = new IdnEncoder();
     assertThat(encoder.encode("ascii")).isEqualTo("ascii");

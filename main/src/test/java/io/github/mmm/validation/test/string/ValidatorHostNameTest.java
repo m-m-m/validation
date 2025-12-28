@@ -10,11 +10,11 @@ import io.github.mmm.validation.test.ValidatorTest;
 /**
  * Test of {@link ValidatorHostName}.
  */
-public class ValidatorHostNameTest extends ValidatorTest {
+class ValidatorHostNameTest extends ValidatorTest {
 
   /** Test valid host names. */
   @Test
-  public void testValidHostNames() {
+  void testValidHostNames() {
 
     ValidatorHostName validator = ValidatorHostName.get();
     String[] valid = { "mail.com", "fast.mail.com", "very.fast.mail.com", "räksmörgås.josefßon.org" };
@@ -23,7 +23,7 @@ public class ValidatorHostNameTest extends ValidatorTest {
 
   /** Test invalid host names. */
   @Test
-  public void testInvalidHostNames() {
+  void testInvalidHostNames() {
 
     ValidatorHostName validator = ValidatorHostName.get();
     String[] invalid = { "@mail.com", ".com" };

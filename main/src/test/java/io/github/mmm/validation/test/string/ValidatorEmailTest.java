@@ -10,11 +10,11 @@ import io.github.mmm.validation.test.ValidatorTest;
 /**
  * Test of {@link ValidatorEmail}.
  */
-public class ValidatorEmailTest extends ValidatorTest {
+class ValidatorEmailTest extends ValidatorTest {
 
   /** Test valid emails. */
   @Test
-  public void testValidEmails() {
+  void testValidEmails() {
 
     ValidatorEmail validator = ValidatorEmail.get();
     String[] valid = { "john.doe@mail.com", "john-doe@fast.mail.com", "john$doe@very.fast.mail.com",
@@ -27,7 +27,7 @@ public class ValidatorEmailTest extends ValidatorTest {
 
   /** Test invalid emails. */
   @Test
-  public void testInvalidEmails() {
+  void testInvalidEmails() {
 
     ValidatorEmail validator = ValidatorEmail.get();
     String[] invalid = { "@mail.com", "john.doe@", "john.doe@.com", "john.doe.@mail.com", "John Doe john.doe@mail.com",

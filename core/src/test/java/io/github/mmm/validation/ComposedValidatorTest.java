@@ -15,11 +15,11 @@ import io.github.mmm.base.range.RangeType;
 /**
  * Test of {@link ComposedValidator}.
  */
-public class ComposedValidatorTest {
+class ComposedValidatorTest {
 
   /** Test of {@link ComposedValidator}. */
   @Test
-  public void testComposedValidator() {
+  void testComposedValidator() {
 
     // arrange
     Pattern regex = Pattern.compile("[a-zA-Z0-9-]*");
